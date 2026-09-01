@@ -85,16 +85,25 @@ test('perfil logístico orbita suavemente e respeita movimento reduzido', async 
   await expect(pills).toHaveCount(6);
   if (page.viewportSize().width <= 560) {
     await expect(rotator).toHaveCSS('animation-name', 'profileOrbitMobileDrift');
-    await expect(rotator).toHaveCSS('animation-duration', '9s');
+    await expect(rotator).toHaveCSS('animation-duration', '5.5s');
     await expect(pills.first()).toHaveCSS('animation-name', 'none');
   } else {
     await expect(rotator).toHaveCSS('animation-name', 'profileOrbitRotate');
-    await expect(rotator).toHaveCSS('animation-duration', '46s');
+    await expect(rotator).toHaveCSS('animation-duration', '24s');
     await expect(pills.first()).toHaveCSS(
       'animation-name',
       'profileOrbitCounterRotate',
     );
   }
+
+  const transformBefore = await rotator.evaluate(
+    (element) => getComputedStyle(element).transform,
+  );
+  await page.waitForTimeout(400);
+  const transformAfter = await rotator.evaluate(
+    (element) => getComputedStyle(element).transform,
+  );
+  expect(transformAfter).not.toBe(transformBefore);
 
   await section.scrollIntoViewIfNeeded();
   await page.waitForTimeout(500);
