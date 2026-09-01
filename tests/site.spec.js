@@ -74,6 +74,43 @@ test('tipos de embarcadores preserva composição, imagens e enquadramento', asy
     .toBe(true);
 });
 
+test('redes de captação preserva composição editável e responsiva', async ({ page }) => {
+  await page.setViewportSize({ width: 1366, height: 768 });
+  await page.goto('/');
+  const section = page.locator('[data-capture-network]');
+  const stage = section.locator('.capture-network');
+  const cards = section.locator('[data-capture-card]');
+
+  await expect(section).toBeVisible();
+  await expect(cards).toHaveCount(4);
+  await expect(stage.locator('.capture-hub')).toHaveCount(1);
+  await expect(stage.locator('.capture-network__connections > path')).toHaveCount(4);
+  await expect(stage.locator('.capture-decor')).toHaveCount(9);
+  await expect(section.locator('.capture-quote')).toContainText(
+    'Por trás de todo CNPJ existe uma pessoa tomando decisões.',
+  );
+  await expect(section.locator('.network-node')).toHaveCount(0);
+
+  await section.scrollIntoViewIfNeeded();
+  await expect
+    .poll(() =>
+      section.evaluate(
+        (element) => element.getBoundingClientRect().right <= window.innerWidth,
+      ),
+    )
+    .toBe(true);
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await expect(cards).toHaveCount(4);
+  await expect
+    .poll(() =>
+      page.evaluate(
+        () => document.documentElement.scrollWidth <= window.innerWidth,
+      ),
+    )
+    .toBe(true);
+});
+
 test('perfil logístico mantém movimento suave em todos os navegadores', async ({ page }) => {
   await page.goto('/');
   const section = page.locator('#perfil');
