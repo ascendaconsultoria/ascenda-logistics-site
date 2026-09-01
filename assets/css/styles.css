@@ -142,13 +142,11 @@
 .profile-orbit__rotator .orbit-pill--5{--orbit-x:-199px;--orbit-y:93px}
 .profile-orbit__rotator .orbit-pill--6{--orbit-x:0px;--orbit-y:185px}
 .orbit-core img{animation:orbitLogoFloat 3.8s ease-in-out infinite;will-change:transform}
-.orbit-tracer{position:absolute;z-index:6;top:4.5%;left:50%;width:11px;height:11px;border:2px solid rgba(255,255,255,.76);border-radius:50%;background:var(--orange);box-shadow:0 0 0 7px rgba(242,108,62,.12),0 0 24px rgba(242,108,62,.9);transform:translate(-50%,-50%);animation:orbitTracerPulse 1.6s ease-in-out infinite}
 .orbit-line--dash{animation:orbitDash 7s linear infinite}.orbit-line--outer{transform-origin:center;animation:orbitSpin 18s linear infinite}
 @keyframes profileOrbitRotate{to{transform:rotate(360deg)}}
 @keyframes profileOrbitCounterRotate{to{transform:rotate(-360deg)}}
 @keyframes profileOrbitMobileDrift{0%,100%{transform:rotate(-2.4deg)}50%{transform:rotate(2.4deg)}}
 @keyframes orbitLogoFloat{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-5px) scale(1.05)}}
-@keyframes orbitTracerPulse{0%,100%{opacity:.72;box-shadow:0 0 0 5px rgba(242,108,62,.08),0 0 18px rgba(242,108,62,.65)}50%{opacity:1;box-shadow:0 0 0 9px rgba(242,108,62,.14),0 0 30px rgba(242,108,62,1)}}
 @keyframes orbitDash{to{stroke-dashoffset:-140}}
 @keyframes orbitSpin{to{transform:rotate(360deg)}}
 
@@ -441,7 +439,6 @@
   .profile-orbit__rotator{animation:profileOrbitRotate 24s linear infinite!important}
   .profile-orbit__rotator .orbit-pill{animation:profileOrbitCounterRotate 24s linear infinite!important}
   .orbit-core img{animation:orbitLogoFloat 3.8s ease-in-out infinite!important}
-  .orbit-tracer{animation:orbitTracerPulse 1.6s ease-in-out infinite!important}
 }
 @media (prefers-reduced-motion:reduce) and (max-width:560px){
   .profile-orbit__rotator{animation:profileOrbitMobileDrift 5.5s ease-in-out infinite!important}

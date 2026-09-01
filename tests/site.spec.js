@@ -79,12 +79,10 @@ test('perfil logístico mantém movimento suave em todos os navegadores', async 
   const section = page.locator('#perfil');
   const rotator = section.locator('.profile-orbit__rotator');
   const pills = rotator.locator('.orbit-pill');
-  const tracer = rotator.locator('.orbit-tracer');
 
   await expect(section).toBeVisible();
   await expect(rotator).toHaveCount(1);
   await expect(pills).toHaveCount(6);
-  await expect(tracer).toBeVisible();
   await expect
     .poll(() =>
       section.evaluate((element) => {
@@ -159,5 +157,4 @@ test('perfil logístico mantém movimento suave em todos os navegadores', async 
       'profileOrbitCounterRotate',
     );
   }
-  await expect(tracer).toHaveCSS('animation-name', 'orbitTracerPulse');
 });
