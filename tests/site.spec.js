@@ -90,6 +90,23 @@ test('redes de captação preserva composição editável e responsiva', async (
     'Por trás de todo CNPJ existe uma pessoa tomando decisões.',
   );
   await expect(section.locator('.network-node')).toHaveCount(0);
+  expect(
+    await cards.first().evaluate((element) => getComputedStyle(element).transform),
+  ).toContain('matrix3d');
+  expect(
+    await stage
+      .locator('.capture-hub')
+      .evaluate((element) => getComputedStyle(element).transform),
+  ).toContain('matrix3d');
+  if ((page.viewportSize()?.width ?? 0) > 820) {
+    await expect
+      .poll(() =>
+        section.evaluate(
+          (element) => element.getBoundingClientRect().height <= window.innerHeight,
+        ),
+      )
+      .toBe(true);
+  }
 
   await section.scrollIntoViewIfNeeded();
   await expect
