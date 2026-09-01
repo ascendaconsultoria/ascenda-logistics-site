@@ -1,0 +1,13 @@
+name: Melhoria
+description: Propor melhoria em fluxo, interface, SEO ou performance
+title: "[MELHORIA] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: context
+    attributes: {label: Contexto, description: Qual problema ou oportunidade esta melhoria resolve?}
+    validations: {required: true}
+  - type: textarea
+    id: acceptance
+    attributes: {label: Critérios de aceite}
+    validations: {required: true}

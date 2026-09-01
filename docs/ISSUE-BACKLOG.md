@@ -1,0 +1,11 @@
+# Backlog inicial para converter em Issues
+- [ ] SEO-001 — Conectar Search Console e enviar sitemap
+- [ ] SEO-002 — Validar Organization Schema no Rich Results / Schema validator
+- [ ] CONV-001 — Definir endpoint final do formulário
+- [ ] CONV-002 — Instalar GTM/GA4 e eventos de CTA/form
+- [ ] PROOF-001 — Validar autorização para logos e nomes de clientes
+- [ ] PROOF-002 — Atualizar snapshots dos cases antes do deploy
+- [ ] PERF-001 — Executar Lighthouse em mobile após hospedagem
+- [ ] OBS-001 — Escolher vendor de error monitoring e configurar endpoint
+- [ ] CONTENT-001 — Publicar primeiro conteúdo de autoridade sobre captação de embarcadores
+- [ ] DEPLOY-001 — Configurar redirects, cache headers e HTTPS no host final

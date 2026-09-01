@@ -1,0 +1,20 @@
+{
+  "name": "ascenda-logistics-site",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "serve": "http-server . -p 8080 -c-1",
+    "lint": "biome check assets/js",
+    "format": "biome format --write assets/js",
+    "test:e2e": "playwright test",
+    "lighthouse": "lhci autorun"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.2.0",
+    "@commitlint/cli": "^19.8.0",
+    "@commitlint/config-conventional": "^19.8.0",
+    "@lhci/cli": "^0.15.1",
+    "@playwright/test": "^1.55.0",
+    "http-server": "^14.1.1"
+  }
+}

@@ -1,0 +1,17 @@
+name: Nova função
+description: Registrar uma nova capacidade do site
+title: "[FEATURE] "
+labels: ["feature"]
+body:
+  - type: textarea
+    id: goal
+    attributes: {label: Objetivo}
+    validations: {required: true}
+  - type: textarea
+    id: scope
+    attributes: {label: Escopo}
+    validations: {required: true}
+  - type: textarea
+    id: acceptance
+    attributes: {label: Critérios de aceite}
+    validations: {required: true}

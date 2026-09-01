@@ -1,0 +1,75 @@
+const { test, expect } = require('@playwright/test');
+test('home carrega e CTA chega à chamada final', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.getByRole('heading',{level:1})).toContainText('Novos embarcadores');
+  const heroVideo=page.locator('video.hero-video');
+  await expect(heroVideo).toHaveAttribute('autoplay','');
+  await expect(heroVideo).toHaveAttribute('loop','');
+  await expect(heroVideo.locator('source')).toHaveAttribute('src','/assets/img/hero-truck.mp4#t=1');
+  await expect(heroVideo).toHaveJSProperty('paused',false);
+  await expect(page.locator('.context-card')).toHaveCount(0);
+  await page.getByRole('link',{name:/Quero novos embarcadores/}).first().click();
+  await expect(page.locator('#formulario')).toBeInViewport();
+});
+test('páginas SEO têm canonical', async ({ page }) => {
+  for (const path of ['/captacao-de-embarcadores/','/marketing-para-transportadoras/','/perfil-logistico/']) {
+    await page.goto(path);
+    await expect(page.locator('link[rel="canonical"]')).toHaveCount(1);
+  }
+});
+
+test('seção de diferença preserva fluxo, critérios e responsividade', async ({ page }) => {
+  await page.goto('/');
+  const section = page.locator('[data-difference]');
+  await expect(section).toBeVisible();
+  await expect(section.locator('[data-criterion]')).toHaveCount(4);
+  await expect(section.locator('[data-path]')).toHaveCount(5);
+  await expect(section.locator('[data-scene]')).toHaveCount(6);
+  const sceneImage = section.locator('.difference-scene-image');
+  await expect(sceneImage).toHaveAttribute(
+    'src',
+    '/assets/img/difference-logistics-diorama-v2.png',
+  );
+  await expect
+    .poll(() => sceneImage.evaluate((image) => image.naturalWidth))
+    .toBeGreaterThan(1600);
+  await section.scrollIntoViewIfNeeded();
+  await expect(section).toHaveClass(/is-active/);
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await expect
+    .poll(() =>
+      page.evaluate(
+        () => document.documentElement.scrollWidth <= window.innerWidth,
+      ),
+    )
+    .toBe(true);
+});
+
+test('tipos de embarcadores preserva composição, imagens e enquadramento', async ({ page }) => {
+  await page.setViewportSize({ width: 1366, height: 768 });
+  await page.goto('/');
+  const section = page.locator('[data-shippers]');
+  const cards = section.locator('[data-shipper-card]');
+  const images = section.locator('.shipper-type-card__image');
+
+  await expect(section).toBeVisible();
+  await expect(cards).toHaveCount(4);
+  await expect(images).toHaveCount(4);
+  await expect
+    .poll(() => images.evaluateAll((items) => items.every((image) => image.naturalWidth > 1600)))
+    .toBe(true);
+
+  await section.scrollIntoViewIfNeeded();
+  await expect(section).toHaveClass(/is-active/);
+  await cards.nth(1).hover();
+  await expect(cards.nth(1)).not.toHaveCSS('transform', 'none');
+
+  await expect
+    .poll(() =>
+      section.evaluate(
+        (element) => element.getBoundingClientRect().right <= window.innerWidth,
+      ),
+    )
+    .toBe(true);
+});

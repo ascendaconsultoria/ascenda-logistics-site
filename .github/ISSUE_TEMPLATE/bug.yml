@@ -1,0 +1,16 @@
+name: Correção
+description: Registrar erro ou regressão
+title: "[BUG] "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: problem
+    attributes: {label: Problema, description: Descreva o comportamento atual.}
+    validations: {required: true}
+  - type: textarea
+    id: expected
+    attributes: {label: Comportamento esperado}
+    validations: {required: true}
+  - type: textarea
+    id: evidence
+    attributes: {label: Evidências, description: Screenshots, URLs, console ou passos para reproduzir.}

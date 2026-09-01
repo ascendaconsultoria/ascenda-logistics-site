@@ -1,0 +1,4 @@
+Contact: mailto:comercial@ascendalogistics.com.br
+Preferred-Languages: pt-BR, en
+Canonical: https://ascendalogistics.com.br/.well-known/security.txt
+Expires: 2027-08-22T23:59:59Z
