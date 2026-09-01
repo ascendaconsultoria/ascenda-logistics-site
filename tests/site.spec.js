@@ -85,6 +85,37 @@ test('perfil logístico mantém movimento suave em todos os navegadores', async 
   await expect(rotator).toHaveCount(1);
   await expect(pills).toHaveCount(6);
   await expect(tracer).toBeVisible();
+  await expect
+    .poll(() =>
+      section.evaluate((element) => {
+        const orbit = element.querySelector('.profile-orbit');
+        const cards = [...element.querySelectorAll('.orbit-pill')];
+        const orbitRect = orbit.getBoundingClientRect();
+        const orbitCenter = {
+          x: orbitRect.left + orbitRect.width / 2,
+          y: orbitRect.top + orbitRect.height / 2,
+        };
+        const centers = cards.map((card) => {
+          const rect = card.getBoundingClientRect();
+          return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
+        });
+        return [
+          [0, 5],
+          [1, 4],
+          [2, 3],
+        ].every(([first, opposite]) => {
+          const midpoint = {
+            x: (centers[first].x + centers[opposite].x) / 2,
+            y: (centers[first].y + centers[opposite].y) / 2,
+          };
+          return (
+            Math.abs(midpoint.x - orbitCenter.x) < 2.5 &&
+            Math.abs(midpoint.y - orbitCenter.y) < 2.5
+          );
+        });
+      }),
+    )
+    .toBe(true);
   if (page.viewportSize().width <= 560) {
     await expect(rotator).toHaveCSS('animation-name', 'profileOrbitMobileDrift');
     await expect(rotator).toHaveCSS('animation-duration', '5.5s');

@@ -134,6 +134,13 @@
 .profile-orbit{height:490px;max-width:620px}
 .profile-orbit__rotator{position:absolute;inset:0;transform-origin:50% 50%;animation:profileOrbitRotate 24s linear infinite;will-change:transform}
 .profile-orbit__rotator .orbit-pill{animation:profileOrbitCounterRotate 24s linear infinite;will-change:transform}
+.profile-orbit__rotator .orbit-pill{right:auto;bottom:auto;left:calc(50% + var(--orbit-x));top:calc(50% + var(--orbit-y));width:138px;height:64px;min-width:0;margin:-32px 0 0 -69px;display:flex;flex-direction:column;justify-content:center}
+.profile-orbit__rotator .orbit-pill--1{--orbit-x:0px;--orbit-y:-185px}
+.profile-orbit__rotator .orbit-pill--2{--orbit-x:199px;--orbit-y:-93px}
+.profile-orbit__rotator .orbit-pill--3{--orbit-x:-199px;--orbit-y:-93px}
+.profile-orbit__rotator .orbit-pill--4{--orbit-x:199px;--orbit-y:93px}
+.profile-orbit__rotator .orbit-pill--5{--orbit-x:-199px;--orbit-y:93px}
+.profile-orbit__rotator .orbit-pill--6{--orbit-x:0px;--orbit-y:185px}
 .orbit-core img{animation:orbitLogoFloat 3.8s ease-in-out infinite;will-change:transform}
 .orbit-tracer{position:absolute;z-index:6;top:4.5%;left:50%;width:11px;height:11px;border:2px solid rgba(255,255,255,.76);border-radius:50%;background:var(--orange);box-shadow:0 0 0 7px rgba(242,108,62,.12),0 0 24px rgba(242,108,62,.9);transform:translate(-50%,-50%);animation:orbitTracerPulse 1.6s ease-in-out infinite}
 .orbit-line--dash{animation:orbitDash 7s linear infinite}.orbit-line--outer{transform-origin:center;animation:orbitSpin 18s linear infinite}
@@ -439,4 +446,14 @@
 @media (prefers-reduced-motion:reduce) and (max-width:560px){
   .profile-orbit__rotator{animation:profileOrbitMobileDrift 5.5s ease-in-out infinite!important}
   .profile-orbit__rotator .orbit-pill{animation:none!important}
+}
+
+@media (max-width:560px){
+  .profile-orbit__rotator .orbit-pill{width:126px;height:62px;margin:-31px 0 0 -63px}
+  .profile-orbit__rotator .orbit-pill--1{--orbit-x:0px;--orbit-y:-220px}
+  .profile-orbit__rotator .orbit-pill--2{--orbit-x:114px;--orbit-y:-110px}
+  .profile-orbit__rotator .orbit-pill--3{--orbit-x:-114px;--orbit-y:-110px}
+  .profile-orbit__rotator .orbit-pill--4{--orbit-x:114px;--orbit-y:110px}
+  .profile-orbit__rotator .orbit-pill--5{--orbit-x:-114px;--orbit-y:110px}
+  .profile-orbit__rotator .orbit-pill--6{--orbit-x:0px;--orbit-y:220px}
 }
