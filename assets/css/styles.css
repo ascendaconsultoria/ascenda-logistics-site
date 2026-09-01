@@ -132,7 +132,12 @@
 
 .profile-layout{grid-template-columns:.95fr 1.05fr;gap:46px}
 .profile-orbit{height:490px;max-width:620px}
+.profile-orbit__rotator{position:absolute;inset:0;transform-origin:50% 50%;animation:profileOrbitRotate 46s linear infinite;will-change:transform}
+.profile-orbit__rotator .orbit-pill{animation:profileOrbitCounterRotate 46s linear infinite;will-change:transform}
 .orbit-line--dash{animation:orbitDash 13s linear infinite}.orbit-line--outer{transform-origin:center;animation:orbitSpin 26s linear infinite}
+@keyframes profileOrbitRotate{to{transform:rotate(360deg)}}
+@keyframes profileOrbitCounterRotate{to{transform:rotate(-360deg)}}
+@keyframes profileOrbitMobileDrift{0%,100%{transform:rotate(-1.1deg)}50%{transform:rotate(1.1deg)}}
 @keyframes orbitDash{to{stroke-dashoffset:-140}}
 @keyframes orbitSpin{to{transform:rotate(360deg)}}
 
@@ -174,11 +179,11 @@
 @media (max-width:560px){
   .hero--video{padding:108px 0 58px}.hero--video .hero-copy h1{font-size:clamp(40px,12.4vw,54px);line-height:1.01}.hero--video .hero-copy>p{font-size:16px}.hero-context{height:295px}.context-card--main{left:0;right:0;min-width:0}.context-card--volume{left:0;bottom:5%;min-width:150px}.context-card--segment{right:0;bottom:5%;min-width:150px}.microproof{font-size:11px}
   .difference-visual{min-height:520px}.difference-factors{grid-template-columns:1fr 1fr}.difference-hub{top:59%;width:132px;height:132px}.difference-route{top:32%;bottom:18%}.difference-destination{left:6%;right:6%;bottom:4%;min-width:0}.difference-layout .compare-flow{display:grid;grid-template-columns:1fr auto 1fr}.difference-layout .compare-flow span{text-align:center}.clarity-box{padding:18px}
-  .inline-cta__inner .btn{width:100%}.shipper-card{min-height:220px}.profile-orbit{height:600px}.network-stage{grid-template-columns:1fr}.network-center{grid-column:auto}.section-cta .btn{width:100%}.cases-grid{grid-template-columns:1fr}.case-card{padding:22px}.case-number{font-size:58px}.cta-final h2{font-size:clamp(38px,11vw,50px)}.cta-final .btn{min-width:0;width:100%}.whatsapp-float{padding:12px}.whatsapp-float span{display:none}
+  .inline-cta__inner .btn{width:100%}.shipper-card{min-height:220px}.profile-orbit{height:600px}.profile-orbit__rotator{animation:profileOrbitMobileDrift 9s ease-in-out infinite}.profile-orbit__rotator .orbit-pill{animation:none}.network-stage{grid-template-columns:1fr}.network-center{grid-column:auto}.section-cta .btn{width:100%}.cases-grid{grid-template-columns:1fr}.case-card{padding:22px}.case-number{font-size:58px}.cta-final h2{font-size:clamp(38px,11vw,50px)}.cta-final .btn{min-width:0;width:100%}.whatsapp-float{padding:12px}.whatsapp-float span{display:none}
 }
 
 @media (prefers-reduced-motion:reduce){
-  .orbit-line--dash,.orbit-line--outer,.network-lines path{animation:none!important}
+  .profile-orbit__rotator,.profile-orbit__rotator .orbit-pill,.orbit-line--dash,.orbit-line--outer,.network-lines path{animation:none!important}
   .hero-video{animation:none!important}
   .hero--video{background:radial-gradient(circle at 70% 20%,rgba(26,83,106,.5),transparent 35%),linear-gradient(135deg,#011e31,#113b4d)}
 }

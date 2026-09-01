@@ -5,7 +5,8 @@ Aplicação no site:
 - motion de entrada curto e discreto
 - microfeedback em botões
 - animação funcional da peneira
-- nenhuma animação infinita de atenção
+- órbita ambiente lenta no perfil logístico, com textos sempre legíveis
+- nenhuma animação infinita que dispute atenção com o conteúdo
 - `prefers-reduced-motion`
 - sem lazy-load na hero
 - sem skeleton artificial em conteúdo síncrono

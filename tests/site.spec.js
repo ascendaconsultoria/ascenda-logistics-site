@@ -73,3 +73,40 @@ test('tipos de embarcadores preserva composição, imagens e enquadramento', asy
     )
     .toBe(true);
 });
+
+test('perfil logístico orbita suavemente e respeita movimento reduzido', async ({ page }) => {
+  await page.goto('/');
+  const section = page.locator('#perfil');
+  const rotator = section.locator('.profile-orbit__rotator');
+  const pills = rotator.locator('.orbit-pill');
+
+  await expect(section).toBeVisible();
+  await expect(rotator).toHaveCount(1);
+  await expect(pills).toHaveCount(6);
+  if (page.viewportSize().width <= 560) {
+    await expect(rotator).toHaveCSS('animation-name', 'profileOrbitMobileDrift');
+    await expect(rotator).toHaveCSS('animation-duration', '9s');
+    await expect(pills.first()).toHaveCSS('animation-name', 'none');
+  } else {
+    await expect(rotator).toHaveCSS('animation-name', 'profileOrbitRotate');
+    await expect(rotator).toHaveCSS('animation-duration', '46s');
+    await expect(pills.first()).toHaveCSS(
+      'animation-name',
+      'profileOrbitCounterRotate',
+    );
+  }
+
+  await section.scrollIntoViewIfNeeded();
+  await page.waitForTimeout(500);
+  await expect
+    .poll(() =>
+      page.evaluate(
+        () => document.documentElement.scrollWidth <= window.innerWidth,
+      ),
+    )
+    .toBe(true);
+
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await expect(rotator).toHaveCSS('animation-name', 'none');
+  await expect(pills.first()).toHaveCSS('animation-name', 'none');
+});
