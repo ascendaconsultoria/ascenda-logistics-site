@@ -135,11 +135,13 @@
 .profile-orbit__rotator{position:absolute;inset:0;transform-origin:50% 50%;animation:profileOrbitRotate 24s linear infinite;will-change:transform}
 .profile-orbit__rotator .orbit-pill{animation:profileOrbitCounterRotate 24s linear infinite;will-change:transform}
 .orbit-core img{animation:orbitLogoFloat 3.8s ease-in-out infinite;will-change:transform}
+.orbit-tracer{position:absolute;z-index:6;top:4.5%;left:50%;width:11px;height:11px;border:2px solid rgba(255,255,255,.76);border-radius:50%;background:var(--orange);box-shadow:0 0 0 7px rgba(242,108,62,.12),0 0 24px rgba(242,108,62,.9);transform:translate(-50%,-50%);animation:orbitTracerPulse 1.6s ease-in-out infinite}
 .orbit-line--dash{animation:orbitDash 7s linear infinite}.orbit-line--outer{transform-origin:center;animation:orbitSpin 18s linear infinite}
 @keyframes profileOrbitRotate{to{transform:rotate(360deg)}}
 @keyframes profileOrbitCounterRotate{to{transform:rotate(-360deg)}}
 @keyframes profileOrbitMobileDrift{0%,100%{transform:rotate(-2.4deg)}50%{transform:rotate(2.4deg)}}
 @keyframes orbitLogoFloat{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-5px) scale(1.05)}}
+@keyframes orbitTracerPulse{0%,100%{opacity:.72;box-shadow:0 0 0 5px rgba(242,108,62,.08),0 0 18px rgba(242,108,62,.65)}50%{opacity:1;box-shadow:0 0 0 9px rgba(242,108,62,.14),0 0 30px rgba(242,108,62,1)}}
 @keyframes orbitDash{to{stroke-dashoffset:-140}}
 @keyframes orbitSpin{to{transform:rotate(360deg)}}
 
@@ -185,7 +187,7 @@
 }
 
 @media (prefers-reduced-motion:reduce){
-  .profile-orbit__rotator,.profile-orbit__rotator .orbit-pill,.orbit-core img,.orbit-line--dash,.orbit-line--outer,.network-lines path{animation:none!important}
+  .orbit-line--dash,.orbit-line--outer,.network-lines path{animation:none!important}
   .hero-video{animation:none!important}
   .hero--video{background:radial-gradient(circle at 70% 20%,rgba(26,83,106,.5),transparent 35%),linear-gradient(135deg,#011e31,#113b4d)}
 }
@@ -424,4 +426,17 @@
 
 @media (prefers-reduced-motion:reduce){
   .shippers-section.is-enhanced [data-shippers-part="header"],.shippers-section.is-enhanced [data-shipper-card]{opacity:1!important;transform:none!important;transition:none!important}.shipper-type-card,.shipper-type-card__image,.shipper-type-card__segment-icon{transition:none!important}
+}
+
+/* Movimento solicitado para o perfil logístico: permanece ativo mesmo quando
+   o navegador reduz outras animações do site. */
+@media (prefers-reduced-motion:reduce){
+  .profile-orbit__rotator{animation:profileOrbitRotate 24s linear infinite!important}
+  .profile-orbit__rotator .orbit-pill{animation:profileOrbitCounterRotate 24s linear infinite!important}
+  .orbit-core img{animation:orbitLogoFloat 3.8s ease-in-out infinite!important}
+  .orbit-tracer{animation:orbitTracerPulse 1.6s ease-in-out infinite!important}
+}
+@media (prefers-reduced-motion:reduce) and (max-width:560px){
+  .profile-orbit__rotator{animation:profileOrbitMobileDrift 5.5s ease-in-out infinite!important}
+  .profile-orbit__rotator .orbit-pill{animation:none!important}
 }
