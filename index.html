@@ -30,7 +30,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/styles.css?v=20260902-4">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20260902-7">
 <script>
 document.documentElement.classList.add('js');
 </script>
@@ -137,7 +137,8 @@ document.documentElement.classList.add('js');
   </div>
 </section>
 
-<section class="difference-section" id="como-funciona" data-difference>
+<template id="legacy-difference-section">
+<section class="difference-section" id="como-funciona-legado" data-difference-legacy>
   <div class="difference-section__container">
     <div class="difference-section__composition">
       <div class="difference-section__left">
@@ -286,6 +287,50 @@ document.documentElement.classList.add('js');
       <span class="difference-disclaimer__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 8 3v6c0 5-3.4 8.6-8 11-4.6-2.4-8-6-8-11V5z"/><path d="m8.5 11.5 2.2 2.2 4.8-5"/></svg></span>
       <div><strong>O Ascenda não vende lista pronta e não intermedeia frete.</strong><p>As campanhas são construídas para a própria transportadora. O interessado entra no fluxo, informa sua necessidade e chega ao comercial com contexto para a abordagem.</p></div>
     </aside>
+  </div>
+</section>
+</template>
+
+<section class="fit-section" id="como-funciona" data-difference aria-labelledby="fit-section-title">
+  <div class="fit-section__inner">
+    <header class="fit-section__copy">
+      <span class="fit-section__eyebrow">A DIFERENÇA COMEÇA AQUI</span>
+      <h2 id="fit-section-title">Nem todo embarcador<br>serve para a sua<br>operação.</h2>
+      <p>Por isso, o Ascenda começa entendendo<br>rota, carga, capacidade e perfil comercial<br>antes de iniciar a captação.</p>
+      <a class="fit-section__cta" href="#formulario" data-form-link>Falar com um especialista <span aria-hidden="true">→</span></a>
+    </header>
+
+    <div class="fit-section__flow" aria-label="Fluxo de definição da oportunidade ideal">
+      <article class="fit-step" data-fit-step>
+        <span class="fit-step__icon" aria-hidden="true"><img src="/assets/img/difference-icons/operacao.png" alt="" width="1254" height="1254" loading="lazy" decoding="async"></span>
+        <strong>Operação</strong>
+        <p>Entendemos sua<br>rota, carga e<br>capacidade.</p>
+      </article>
+      <span class="fit-section__connector" aria-hidden="true"></span>
+      <article class="fit-step" data-fit-step>
+        <span class="fit-step__icon" aria-hidden="true"><img src="/assets/img/difference-icons/perfil.png" alt="" width="1254" height="1254" loading="lazy" decoding="async"></span>
+        <strong>Perfil</strong>
+        <p>Avaliamos o seu<br>perfil comercial<br>e necessidades.</p>
+      </article>
+      <span class="fit-section__connector" aria-hidden="true"></span>
+      <article class="fit-step" data-fit-step>
+        <span class="fit-step__icon" aria-hidden="true"><img src="/assets/img/difference-icons/filtro.png" alt="" width="1254" height="1254" loading="lazy" decoding="async"></span>
+        <strong>Filtro</strong>
+        <p>Aplicamos nossos<br>critérios para<br>garantir o fit.</p>
+      </article>
+      <span class="fit-section__connector" aria-hidden="true"></span>
+      <article class="fit-step" data-fit-step>
+        <span class="fit-step__icon" aria-hidden="true"><img src="/assets/img/difference-icons/match.png" alt="" width="1254" height="1254" loading="lazy" decoding="async"></span>
+        <strong>Match</strong>
+        <p>Conectamos você<br>aos embarcadores<br>ideais.</p>
+      </article>
+      <span class="fit-section__connector" aria-hidden="true"></span>
+      <article class="fit-step" data-fit-step>
+        <span class="fit-step__icon" aria-hidden="true"><img src="/assets/img/difference-icons/oportunidade.png" alt="" width="1254" height="1254" loading="lazy" decoding="async"></span>
+        <strong>Oportunidade</strong>
+        <p>Apresentamos apenas<br>oportunidades que<br>possuem valor real.</p>
+      </article>
+    </div>
   </div>
 </section>
 

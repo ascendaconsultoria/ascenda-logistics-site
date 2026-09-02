@@ -40,3 +40,6 @@ Leia `AGENTS.md`, `PROJECT.md` e `docs/`.
 
 ## Redes de captação
 A seção da página inicial usa a arte aprovada do projeto v0, armazenada localmente em `assets/img/redes-captacao-v0.png` para não depender de hospedagem externa. A renderização equilibra a altura disponível com uma largura mínima proporcional ao viewport, evitando que a composição fique pequena em telas desktop mais baixas.
+
+## A diferença começa aqui
+A seção apresenta em HTML e SVG as cinco etapas Operação, Perfil, Filtro, Match e Oportunidade, preservando a composição visual de referência e a legibilidade responsiva.
