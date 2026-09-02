@@ -74,24 +74,27 @@ test('tipos de embarcadores preserva composição, imagens e enquadramento', asy
     .toBe(true);
 });
 
-test('redes de captação mantém composição vetorial, hover e responsividade', async ({ page }, testInfo) => {
+test('redes de captação incorpora o frame do v0 sem corte ou overflow', async ({ page }, testInfo) => {
   await page.setViewportSize({ width: 1366, height: 768 });
   await page.goto('/#redes');
   const section = page.locator('[data-capture-network]');
-  const canvas = section.locator('.capture-v0-canvas');
-  const cards = section.locator('[data-capture-card]');
-  const core = section.locator('.capture-v0-core');
+  const artwork = section.locator('.capture-section__artwork');
 
   await expect(section).toBeVisible();
-  await expect(canvas).toHaveCount(1);
-  await expect(cards).toHaveCount(4);
-  await expect(core).toHaveCount(1);
-  await expect(section.locator('.capture-v0-connections > path')).toHaveCount(4);
-  await expect(section.locator('.capture-v0-decor')).toHaveCount(9);
-  await expect(section.locator('.capture-v0-quote')).toContainText(
-    'Por trás de todo CNPJ existe uma pessoa tomando decisões.',
+  await expect(artwork).toHaveCount(1);
+  await expect(artwork).toHaveAttribute(
+    'src',
+    '/assets/img/redes-captacao-v0.png',
   );
-  await expect(section.locator('.capture-section__artwork')).toHaveCount(0);
+  await expect
+    .poll(() =>
+      artwork.evaluate((image) => ({
+        width: image.naturalWidth,
+        height: image.naturalHeight,
+      })),
+    )
+    .toEqual({ width: 1448, height: 1086 });
+  await expect(section.locator('[data-capture-card]')).toHaveCount(0);
 
   await page.evaluate(() => document.querySelector('#redes').scrollIntoView());
   await expect
@@ -112,19 +115,12 @@ test('redes de captação mantém composição vetorial, hover e responsividade'
     .toBe(true);
 
   if (testInfo.project.name === 'desktop') {
-    const initialTransform = await cards.first().evaluate(
-      (element) => getComputedStyle(element).transform,
-    );
-    await cards.first().hover();
-    await expect
-      .poll(() =>
-        cards.first().evaluate((element) => getComputedStyle(element).transform),
-      )
-      .not.toBe(initialTransform);
+    await artwork.hover();
+    await expect(artwork).not.toHaveCSS('transform', 'none');
   }
 
   await page.setViewportSize({ width: 390, height: 844 });
-  await expect(canvas).toBeVisible();
+  await expect(artwork).toBeVisible();
   await expect
     .poll(() =>
       page.evaluate(

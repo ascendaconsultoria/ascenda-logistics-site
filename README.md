@@ -39,4 +39,4 @@ Inclui:
 Leia `AGENTS.md`, `PROJECT.md` e `docs/`.
 
 ## Redes de captação
-A seção da página inicial foi reconstruída em HTML, CSS e SVG a partir da arte aprovada do projeto v0. A referência original permanece em `assets/img/redes-captacao-v0.png`; a renderização vetorial respeita a largura e a altura útil da tela e permite interação individual nos cards em dispositivos com mouse.
+A seção da página inicial usa a arte aprovada do projeto v0, armazenada localmente em `assets/img/redes-captacao-v0.png` para não depender de hospedagem externa. A renderização respeita a largura e a altura útil da tela e aplica interação discreta em dispositivos com mouse.
