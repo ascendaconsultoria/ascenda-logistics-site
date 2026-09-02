@@ -214,3 +214,39 @@ test('perfil logístico mantém movimento suave em todos os navegadores', async 
     );
   }
 });
+
+test('operações usa copy direta e cabe no viewport desktop', async ({ page }) => {
+  await page.setViewportSize({ width: 1366, height: 768 });
+  await page.goto('/#operacoes');
+
+  const section = page.locator('#operacoes');
+  const cards = section.locator('.operation-card');
+  await expect(cards).toHaveCount(6);
+  await expect(cards.nth(0).getByRole('heading', { level: 3 })).toHaveText('Carga fechada');
+  await expect(cards.nth(1).getByRole('heading', { level: 3 })).toHaveText('Fracionado recorrente');
+  await expect(cards.nth(2).getByRole('heading', { level: 3 })).toHaveText('Ocupação de rotas');
+  await expect(cards.nth(3).getByRole('heading', { level: 3 })).toHaveText('Operações Mercosul');
+  await expect(cards.nth(4).getByRole('heading', { level: 3 })).toHaveText('Distribuição e last mile');
+  await expect(cards.nth(5).getByRole('heading', { level: 3 })).toHaveText('Armazenagem e distribuição');
+
+  await expect
+    .poll(() =>
+      page.evaluate(() => {
+        const operations = document.querySelector('#operacoes');
+        const header = document.querySelector('.site-header');
+        return (
+          operations.getBoundingClientRect().height <=
+          window.innerHeight - header.getBoundingClientRect().height
+        );
+      }),
+    )
+    .toBe(true);
+
+  await expect
+    .poll(() =>
+      page.evaluate(
+        () => document.documentElement.scrollWidth <= window.innerWidth,
+      ),
+    )
+    .toBe(true);
+});
