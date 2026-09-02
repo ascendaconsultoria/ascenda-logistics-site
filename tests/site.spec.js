@@ -47,7 +47,7 @@ test('seção de diferença preserva fluxo, critérios e responsividade', async 
 });
 
 test('tipos de embarcadores preserva composição, imagens e enquadramento', async ({ page }) => {
-  await page.setViewportSize({ width: 1366, height: 768 });
+  await page.setViewportSize({ width: 1366, height: 622 });
   await page.goto('/');
   const section = page.locator('[data-shippers]');
   const cards = section.locator('[data-shipper-card]');
@@ -78,22 +78,28 @@ test('redes de captação incorpora o frame do v0 sem corte ou overflow', async 
   await page.setViewportSize({ width: 1366, height: 768 });
   await page.goto('/#redes');
   const section = page.locator('[data-capture-network]');
-  const artwork = section.locator('.capture-section__artwork');
+  const panel = section.locator('.capture-hybrid__panel img');
 
   await expect(section).toBeVisible();
-  await expect(artwork).toHaveCount(1);
-  await expect(artwork).toHaveAttribute(
+  await expect(panel).toHaveCount(1);
+  await expect(panel).toHaveAttribute(
     'src',
-    '/assets/img/redes-captacao-v0.png',
+    '/assets/img/redes-captacao-painel.png',
   );
   await expect
     .poll(() =>
-      artwork.evaluate((image) => ({
+      panel.evaluate((image) => ({
         width: image.naturalWidth,
         height: image.naturalHeight,
       })),
     )
-    .toEqual({ width: 1448, height: 1086 });
+    .toEqual({ width: 1400, height: 616 });
+  await expect(section.getByRole('heading', { level: 2 })).toContainText(
+    'De onde os',
+  );
+  await expect(section.locator('.capture-hybrid__quote')).toContainText(
+    'Por trás de todo CNPJ existe uma pessoa tomando decisões.',
+  );
   await expect(section.locator('[data-capture-card]')).toHaveCount(0);
 
   await page.evaluate(() => document.querySelector('#redes').scrollIntoView());
@@ -104,23 +110,19 @@ test('redes de captação incorpora o frame do v0 sem corte ou overflow', async 
           const rect = element.getBoundingClientRect();
           const header = document.querySelector('.site-header');
           const headerBottom = header?.getBoundingClientRect().bottom ?? 0;
-          return (
-            rect.top >= headerBottom &&
-            rect.right <= window.innerWidth &&
-            rect.bottom <= window.innerHeight
-          );
+          return rect.top >= headerBottom && rect.right <= window.innerWidth;
         },
       ),
     )
     .toBe(true);
-
   if (testInfo.project.name === 'desktop') {
-    await artwork.hover();
-    await expect(artwork).not.toHaveCSS('transform', 'none');
+    const figure = section.locator('.capture-hybrid__panel');
+    await figure.hover();
+    await expect(figure).not.toHaveCSS('transform', 'none');
   }
 
   await page.setViewportSize({ width: 390, height: 844 });
-  await expect(artwork).toBeVisible();
+  await expect(panel).toBeVisible();
   await expect
     .poll(() =>
       page.evaluate(

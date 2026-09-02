@@ -512,8 +512,27 @@
 
 /* Redes de captação — seção recebida do v0 */
 .capture-section.capture-section--v0{display:block;min-height:0;padding:clamp(8px,1.3vh,14px) clamp(10px,2vw,24px);scroll-margin-top:94px;overflow:hidden;background:#f8f9fb;color:inherit}
-.capture-section__artwork{display:block;width:min(100%,1180px,calc(133.333vh - 160px));height:auto;aspect-ratio:4/3;margin:0 auto;object-fit:contain;image-rendering:auto;transform:translateZ(0);transform-origin:center;backface-visibility:hidden;transition:transform .42s cubic-bezier(.22,1,.36,1),filter .42s ease;will-change:transform}
+.capture-section__artwork{display:block;width:min(100%,1180px,max(72vw,calc(133.333vh - 160px)));height:auto;aspect-ratio:4/3;margin:0 auto;object-fit:contain;image-rendering:auto;transform:translateZ(0);transform-origin:center;backface-visibility:hidden;transition:transform .42s cubic-bezier(.22,1,.36,1),filter .42s ease;will-change:transform}
 .capture-section__sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-@supports(height:100svh){.capture-section__artwork{width:min(100%,1180px,calc(133.333svh - 160px))}}
+@supports(height:100svh){.capture-section__artwork{width:min(100%,1180px,max(72vw,calc(133.333svh - 160px)))}}
 @media (hover:hover) and (pointer:fine){.capture-section__artwork:hover{filter:contrast(1.012) saturate(1.008);transform:translate3d(0,-4px,0) scale(1.002)}}
 @media (prefers-reduced-motion:reduce){.capture-section__artwork{transition:none}.capture-section__artwork:hover{transform:none}}
+
+/* Redes de captação — texto vetorial com painel 3D original preservado */
+.capture-section.capture-section--v0{padding:28px 20px 34px}
+.capture-hybrid{width:min(1040px,calc(100vw - 40px));margin:0 auto}
+.capture-hybrid__header{margin:0 0 24px;max-width:650px}
+.capture-hybrid__header>span{display:flex;align-items:center;gap:12px;margin-bottom:18px;color:#f15e35;font-size:11px;font-weight:900;letter-spacing:.2em;line-height:1}
+.capture-hybrid__header>span:before{width:34px;height:2px;background:#f15e35;content:""}
+.capture-hybrid__header h2{margin:0 0 18px;color:#06253c;font-size:clamp(46px,4.5vw,64px);font-weight:900;letter-spacing:-.055em;line-height:1.01}
+.capture-hybrid__header p{margin:0;color:#61758a;font-size:clamp(15px,1.35vw,19px);line-height:1.45}
+.capture-hybrid__panel{margin:0;transition:transform .42s cubic-bezier(.22,1,.36,1),filter .42s ease;will-change:transform}
+.capture-hybrid__panel img{display:block;width:100%;height:auto}
+.capture-hybrid__quote{display:grid;min-height:112px;grid-template-columns:62px 1fr 92px;align-items:center;gap:18px;margin:14px 0 0;padding:18px 28px;border-radius:22px;background:radial-gradient(circle at 72% 18%,#0c4868,transparent 48%),linear-gradient(110deg,#021e35,#06344f);box-shadow:0 15px 30px rgba(3,34,54,.16);color:#fff;overflow:hidden}
+.capture-hybrid__quote>span{display:grid;place-items:center;width:54px;aspect-ratio:1;border:2px solid #f46e42;border-radius:10px;color:#f46e42;font-family:Georgia,serif;font-size:48px;line-height:1}
+.capture-hybrid__quote p{margin:0 0 6px;font-size:20px;font-weight:750;letter-spacing:-.025em;line-height:1.18}
+.capture-hybrid__quote small{display:block;color:#b7c7d2;font-size:13px;line-height:1.45}
+.capture-hybrid__quote>svg{width:88px;height:64px;opacity:.62}.capture-hybrid__quote>svg ellipse{fill:#315a77}.capture-hybrid__quote>svg circle,.capture-hybrid__quote>svg path{fill:#3a6583;stroke:#7fa0b8;stroke-width:2}
+@media (hover:hover) and (pointer:fine){.capture-hybrid__panel:hover{filter:contrast(1.01) saturate(1.008);transform:translateY(-4px)}}
+@media (max-width:720px){.capture-section.capture-section--v0{padding:40px 15px}.capture-hybrid{width:100%}.capture-hybrid__header h2{font-size:clamp(38px,11vw,50px)}.capture-hybrid__header p br,.capture-hybrid__quote small br{display:none}.capture-hybrid__quote{grid-template-columns:48px 1fr;gap:14px;padding:18px}.capture-hybrid__quote>span{width:46px}.capture-hybrid__quote>svg{display:none}.capture-hybrid__quote p{font-size:17px}.capture-hybrid__quote small{font-size:12px}}
+@media (prefers-reduced-motion:reduce){.capture-hybrid__panel{transition:none}.capture-hybrid__panel:hover{transform:none}}
