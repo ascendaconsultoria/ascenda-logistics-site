@@ -74,8 +74,8 @@ test('tipos de embarcadores preserva composição, imagens e enquadramento', asy
     .toBe(true);
 });
 
-test('redes de captação incorpora o frame do v0 sem corte ou overflow', async ({ page }) => {
-  await page.setViewportSize({ width: 1448, height: 1086 });
+test('redes de captação incorpora o frame do v0 sem corte ou overflow', async ({ page }, testInfo) => {
+  await page.setViewportSize({ width: 1366, height: 768 });
   await page.goto('/#redes');
   const section = page.locator('[data-capture-network]');
   const artwork = section.locator('.capture-section__artwork');
@@ -104,11 +104,20 @@ test('redes de captação incorpora o frame do v0 sem corte ou overflow', async 
           const rect = element.getBoundingClientRect();
           const header = document.querySelector('.site-header');
           const headerBottom = header?.getBoundingClientRect().bottom ?? 0;
-          return rect.top >= headerBottom && rect.right <= window.innerWidth;
+          return (
+            rect.top >= headerBottom &&
+            rect.right <= window.innerWidth &&
+            rect.bottom <= window.innerHeight
+          );
         },
       ),
     )
     .toBe(true);
+
+  if (testInfo.project.name === 'desktop') {
+    await artwork.hover();
+    await expect(artwork).not.toHaveCSS('transform', 'none');
+  }
 
   await page.setViewportSize({ width: 390, height: 844 });
   await expect(artwork).toBeVisible();
