@@ -18,21 +18,17 @@ test('páginas SEO têm canonical', async ({ page }) => {
   }
 });
 
-test('seção de diferença preserva fluxo, critérios e responsividade', async ({ page }) => {
+test('seção de diferença preserva as cinco etapas, ícones e responsividade', async ({ page }) => {
   await page.goto('/');
   const section = page.locator('[data-difference]');
+  const steps = section.locator('[data-fit-step]');
   await expect(section).toBeVisible();
-  await expect(section.locator('[data-criterion]')).toHaveCount(4);
-  await expect(section.locator('[data-path]')).toHaveCount(5);
-  await expect(section.locator('[data-scene]')).toHaveCount(6);
-  const sceneImage = section.locator('.difference-scene-image');
-  await expect(sceneImage).toHaveAttribute(
-    'src',
-    '/assets/img/difference-logistics-diorama-v2.png',
+  await expect(steps).toHaveCount(5);
+  await expect(section.locator('.fit-step__icon svg')).toHaveCount(5);
+  await expect(section.getByRole('heading', { level: 2 })).toContainText(
+    'Nem todo embarcador',
   );
-  await expect
-    .poll(() => sceneImage.evaluate((image) => image.naturalWidth))
-    .toBeGreaterThan(1600);
+  await expect(section.getByRole('link', { name: /Falar com um especialista/ })).toBeVisible();
   await section.scrollIntoViewIfNeeded();
   await expect(section).toHaveClass(/is-active/);
 
@@ -47,7 +43,7 @@ test('seção de diferença preserva fluxo, critérios e responsividade', async 
 });
 
 test('tipos de embarcadores preserva composição, imagens e enquadramento', async ({ page }) => {
-  await page.setViewportSize({ width: 1366, height: 622 });
+  await page.setViewportSize({ width: 1366, height: 768 });
   await page.goto('/');
   const section = page.locator('[data-shippers]');
   const cards = section.locator('[data-shipper-card]');

@@ -30,7 +30,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/styles.css?v=20260902-4">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20260902-5">
 <script>
 document.documentElement.classList.add('js');
 </script>
@@ -137,7 +137,8 @@ document.documentElement.classList.add('js');
   </div>
 </section>
 
-<section class="difference-section" id="como-funciona" data-difference>
+<template id="legacy-difference-section">
+<section class="difference-section" id="como-funciona-legado" data-difference-legacy>
   <div class="difference-section__container">
     <div class="difference-section__composition">
       <div class="difference-section__left">
@@ -286,6 +287,50 @@ document.documentElement.classList.add('js');
       <span class="difference-disclaimer__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 8 3v6c0 5-3.4 8.6-8 11-4.6-2.4-8-6-8-11V5z"/><path d="m8.5 11.5 2.2 2.2 4.8-5"/></svg></span>
       <div><strong>O Ascenda não vende lista pronta e não intermedeia frete.</strong><p>As campanhas são construídas para a própria transportadora. O interessado entra no fluxo, informa sua necessidade e chega ao comercial com contexto para a abordagem.</p></div>
     </aside>
+  </div>
+</section>
+</template>
+
+<section class="fit-section" id="como-funciona" data-difference aria-labelledby="fit-section-title">
+  <div class="fit-section__inner">
+    <header class="fit-section__copy">
+      <span class="fit-section__eyebrow">A DIFERENÇA COMEÇA AQUI</span>
+      <h2 id="fit-section-title">Nem todo embarcador<br>serve para a sua<br>operação.</h2>
+      <p>Por isso, o Ascenda começa entendendo rota, carga, capacidade e perfil comercial antes de iniciar a captação.</p>
+      <a class="fit-section__cta" href="#formulario" data-form-link>Falar com um especialista <span aria-hidden="true">→</span></a>
+    </header>
+
+    <div class="fit-section__flow" aria-label="Fluxo de definição da oportunidade ideal">
+      <article class="fit-step" data-fit-step>
+        <span class="fit-step__icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M7 16h23v19H7z"/><path d="M30 22h7l5 7v6H30z"/><circle cx="15" cy="37" r="4"/><circle cx="35" cy="37" r="4"/><path class="fit-step__accent" d="M8 13h20"/></svg></span>
+        <strong>Operação</strong>
+        <p>Entendemos sua rota, carga e capacidade.</p>
+      </article>
+      <span class="fit-section__connector" aria-hidden="true"></span>
+      <article class="fit-step" data-fit-step>
+        <span class="fit-step__icon" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="24" cy="16" r="7"/><path d="M11 39c1-10 6-15 13-15s12 5 13 15Z"/><path class="fit-step__accent" d="M13 41h22"/></svg></span>
+        <strong>Perfil</strong>
+        <p>Avaliamos o seu perfil comercial e necessidades.</p>
+      </article>
+      <span class="fit-section__connector" aria-hidden="true"></span>
+      <article class="fit-step" data-fit-step>
+        <span class="fit-step__icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M9 10h30L28 23v13l-8 4V23Z"/><path class="fit-step__accent" d="M10 8h28"/></svg></span>
+        <strong>Filtro</strong>
+        <p>Aplicamos nossos critérios para garantir o fit.</p>
+      </article>
+      <span class="fit-section__connector" aria-hidden="true"></span>
+      <article class="fit-step" data-fit-step>
+        <span class="fit-step__icon" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="22" cy="26" r="15"/><circle cx="22" cy="26" r="9"/><circle cx="22" cy="26" r="3"/><path class="fit-step__accent" d="m29 19 11-11m-7 0h7v7"/></svg></span>
+        <strong>Match</strong>
+        <p>Conectamos você aos embarcadores ideais.</p>
+      </article>
+      <span class="fit-section__connector" aria-hidden="true"></span>
+      <article class="fit-step" data-fit-step>
+        <span class="fit-step__icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="m7 20 8-8 8 4 4-2 14 10-9 10-8-5-5 4-12-10Z"/><path d="m15 20 8 7m-3 5-5-5m13 3-8-7m13 2-7-6"/><path class="fit-step__accent" d="m8 17 7-7"/></svg></span>
+        <strong>Oportunidade</strong>
+        <p>Apresentamos apenas oportunidades que possuem valor real.</p>
+      </article>
+    </div>
   </div>
 </section>
 
