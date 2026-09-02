@@ -509,3 +509,8 @@
 @media (prefers-reduced-motion:reduce){
   .capture-network__connections>path,.capture-network__connections>circle,.capture-channel,.capture-hub{animation:none!important}
 }
+
+/* Redes de captação — seção recebida do v0 */
+.capture-section.capture-section--v0{display:block;min-height:0;padding:0;scroll-margin-top:94px;overflow:hidden;background:#f8f9fb;color:inherit}
+.capture-section__artwork{display:block;width:100%;max-width:1448px;height:auto;margin:0 auto}
+.capture-section__sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}

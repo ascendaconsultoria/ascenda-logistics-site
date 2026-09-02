@@ -74,51 +74,44 @@ test('tipos de embarcadores preserva composição, imagens e enquadramento', asy
     .toBe(true);
 });
 
-test('redes de captação preserva composição editável e responsiva', async ({ page }) => {
-  await page.setViewportSize({ width: 1366, height: 768 });
-  await page.goto('/');
+test('redes de captação incorpora o frame do v0 sem corte ou overflow', async ({ page }) => {
+  await page.setViewportSize({ width: 1448, height: 1086 });
+  await page.goto('/#redes');
   const section = page.locator('[data-capture-network]');
-  const stage = section.locator('.capture-network');
-  const cards = section.locator('[data-capture-card]');
+  const artwork = section.locator('.capture-section__artwork');
 
   await expect(section).toBeVisible();
-  await expect(cards).toHaveCount(4);
-  await expect(stage.locator('.capture-hub')).toHaveCount(1);
-  await expect(stage.locator('.capture-network__connections > path')).toHaveCount(4);
-  await expect(stage.locator('.capture-decor')).toHaveCount(9);
-  await expect(section.locator('.capture-quote')).toContainText(
-    'Por trás de todo CNPJ existe uma pessoa tomando decisões.',
+  await expect(artwork).toHaveCount(1);
+  await expect(artwork).toHaveAttribute(
+    'src',
+    '/assets/img/redes-captacao-v0.png',
   );
-  await expect(section.locator('.network-node')).toHaveCount(0);
-  expect(
-    await cards.first().evaluate((element) => getComputedStyle(element).transform),
-  ).toContain('matrix3d');
-  expect(
-    await stage
-      .locator('.capture-hub')
-      .evaluate((element) => getComputedStyle(element).transform),
-  ).toContain('matrix3d');
-  if ((page.viewportSize()?.width ?? 0) > 820) {
-    await expect
-      .poll(() =>
-        section.evaluate(
-          (element) => element.getBoundingClientRect().height <= window.innerHeight,
-        ),
-      )
-      .toBe(true);
-  }
+  await expect
+    .poll(() =>
+      artwork.evaluate((image) => ({
+        width: image.naturalWidth,
+        height: image.naturalHeight,
+      })),
+    )
+    .toEqual({ width: 1448, height: 1086 });
+  await expect(section.locator('[data-capture-card]')).toHaveCount(0);
 
-  await section.scrollIntoViewIfNeeded();
+  await page.evaluate(() => document.querySelector('#redes').scrollIntoView());
   await expect
     .poll(() =>
       section.evaluate(
-        (element) => element.getBoundingClientRect().right <= window.innerWidth,
+        (element) => {
+          const rect = element.getBoundingClientRect();
+          const header = document.querySelector('.site-header');
+          const headerBottom = header?.getBoundingClientRect().bottom ?? 0;
+          return rect.top >= headerBottom && rect.right <= window.innerWidth;
+        },
       ),
     )
     .toBe(true);
 
   await page.setViewportSize({ width: 390, height: 844 });
-  await expect(cards).toHaveCount(4);
+  await expect(artwork).toBeVisible();
   await expect
     .poll(() =>
       page.evaluate(
