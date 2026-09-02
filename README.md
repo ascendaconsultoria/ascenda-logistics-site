@@ -37,3 +37,6 @@ Inclui:
 
 ## Engenharia
 Leia `AGENTS.md`, `PROJECT.md` e `docs/`.
+
+## Redes de captação
+A seção da página inicial usa a arte aprovada do projeto v0, armazenada localmente em `assets/img/redes-captacao-v0.png` para não depender de hospedagem externa. A renderização equilibra a altura disponível com uma largura mínima proporcional ao viewport, evitando que a composição fique pequena em telas desktop mais baixas.
