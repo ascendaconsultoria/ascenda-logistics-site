@@ -24,7 +24,9 @@ test('seção de diferença preserva as cinco etapas, ícones e responsividade',
   const steps = section.locator('[data-fit-step]');
   await expect(section).toBeVisible();
   await expect(steps).toHaveCount(5);
-  await expect(section.locator('.fit-step__icon svg')).toHaveCount(5);
+  const icons = section.locator('.fit-step__icon img');
+  await expect(icons).toHaveCount(5);
+  await expect(icons.first()).toHaveAttribute('src', /difference-icons\/operacao\.png$/);
   await expect(section.getByRole('heading', { level: 2 })).toContainText(
     'Nem todo embarcador',
   );
