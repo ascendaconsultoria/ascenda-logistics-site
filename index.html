@@ -31,6 +31,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/styles.css?v=20260902-11">
+<link rel="stylesheet" href="/assets/css/crm-showcase.css?v=20260905-3">
 <script>
 document.documentElement.classList.add('js');
 </script>
@@ -469,29 +470,31 @@ document.documentElement.classList.add('js');
   </div>
 </section>
 
-<section class="section section--navy" id="dados">
+<section class="section section--navy crm-showcase" id="dados" aria-labelledby="crm-showcase-title">
   <div class="container">
-    <div class="section-head section-head--split reveal">
-      <div><span class="eyebrow eyebrow--orange">O QUE CHEGA</span><h2>Seu comercial recebe contexto. Não apenas nome e telefone.</h2></div>
-      <p>Os campos de qualificação ajudam a priorizar a abordagem e reduzem o tempo perdido tentando descobrir se existe fit.</p>
+    <header class="crm-showcase__heading">
+      <span class="eyebrow eyebrow--orange">O QUE CHEGA AO SEU COMERCIAL</span>
+      <h2 id="crm-showcase-title">Embarcadores com perfil para a sua operação.</h2>
+      <p>Indústrias, distribuidores e empresas com demanda de transporte. Seu time conhece a rota, o volume, a frequência e quem decide — para abordar cada oportunidade com contexto.</p>
+    </header>
+    <div class="crm-showcase__carousel" data-crm-carousel role="region" aria-roledescription="carrossel" aria-label="Demonstração do sistema com dados fictícios">
+      <div class="crm-showcase__navigation" hidden>
+        <div class="crm-showcase__tabs" role="group" aria-label="Escolher tela">
+          <button type="button" data-crm-tab="0" aria-pressed="true" aria-controls="crm-screen-leads">Leads</button>
+          <button type="button" data-crm-tab="1" aria-pressed="false" aria-controls="crm-screen-kanban">Kanban</button>
+          <button type="button" data-crm-tab="2" aria-pressed="false" aria-controls="crm-screen-funnel">Funil comercial</button>
+          <button type="button" data-crm-tab="3" aria-pressed="false" aria-controls="crm-screen-insights">Insights</button>
+        </div>
+      </div>
+      <div class="crm-showcase__screens" data-crm-screens></div>
+      <noscript><p class="crm-showcase__fallback">Exemplo fictício: Indústria Aurora — carga fechada, rota SP → PR, 24 t por embarque e frequência semanal. O comercial recebe o contato responsável e acompanha a oportunidade até a negociação.</p></noscript>
+      <div class="crm-showcase__footer" hidden>
+        <div><strong data-crm-caption>Conheça o embarcador antes do primeiro contato.</strong><p data-crm-description>Segmento, rota, volume e responsável em uma visão organizada.</p></div>
+        <div class="crm-showcase__arrows"><button type="button" data-crm-pause aria-label="Pausar alternância automática">Ⅱ</button><button type="button" data-crm-prev aria-label="Tela anterior">←</button><span data-crm-count>01 / 04</span><button type="button" data-crm-next aria-label="Próxima tela">→</button></div>
+      </div>
+      <span class="crm-showcase__sr" data-crm-announcement aria-live="polite" aria-atomic="true"></span>
     </div>
-    <div class="crm-mock reveal" data-skeleton-wrap>
-      <div class="crm-topbar">
-        <div><strong>Oportunidades</strong><span>Dados comerciais organizados</span></div>
-        <button type="button" tabindex="-1">Sincronizado</button>
-      </div>
-      <div class="crm-filters"><span>Buscar empresa, contato ou cargo...</span><span>Potencial</span><span>Região</span><span>Operação</span></div>
-      <div class="crm-table" role="table" aria-label="Exemplo de dados de oportunidades">
-        <div class="crm-row crm-row--head" role="row"><span>EMPRESA</span><span>CONTATO</span><span>CARGO</span><span>SEGMENTO</span><span>REGIÃO</span><span>OPERAÇÃO</span><span>POTENCIAL</span></div>
-        <div class="crm-row" role="row"><span>Indústria Horizonte</span><span>Marina Costa</span><span>Diretoria</span><span>Indústria</span><span>SP → PR</span><span>Carga fechada</span><span><b class="tag tag--hot">Alto</b></span></div>
-        <div class="crm-row" role="row"><span>Atlas Distribuição</span><span>Rafael Lima</span><span>Ger. Logística</span><span>Distribuidor</span><span>Sudeste</span><span>Fracionado recorrente</span><span><b class="tag">Aderente</b></span></div>
-        <div class="crm-row" role="row"><span>Nova Base Comércio</span><span>Daniel Rocha</span><span>Sócio</span><span>Atacado</span><span>Mercosul</span><span>Lotação</span><span><b class="tag tag--hot">Alto</b></span></div>
-      </div>
-      <div class="crm-mobile-cards">
-        <article><strong>Indústria Horizonte</strong><span>Marina Costa • Diretoria</span><small>SP → PR • Carga fechada</small><b class="tag tag--hot">Alto potencial</b></article>
-        <article><strong>Atlas Distribuição</strong><span>Rafael Lima • Ger. Logística</span><small>Sudeste • Fracionado recorrente</small><b class="tag">Aderente</b></article>
-      </div>
-    </div>
+    <p class="crm-showcase__note">Empresas, contatos e indicadores ilustrativos. O perfil de aquisição é definido conforme a sua operação; os exemplos não representam resultados garantidos.</p>
   </div>
 </section>
 
@@ -619,4 +622,5 @@ document.documentElement.classList.add('js');
 <script src="/assets/js/config.js"></script>
 <script src="/assets/js/observability.js" defer></script>
 <script src="/assets/js/main.js" defer></script>
+<script src="/assets/js/crm-showcase.js?v=20260905-3" defer></script>
 </body></html>
