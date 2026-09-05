@@ -43,3 +43,10 @@ A seção da página inicial usa a arte aprovada do projeto v0, armazenada local
 
 ## A diferença começa aqui
 A seção apresenta em HTML e SVG as cinco etapas Operação, Perfil, Filtro, Match e Oportunidade, preservando a composição visual de referência e a legibilidade responsiva.
+
+## O que chega ao comercial
+A seção `#dados` demonstra Leads, Kanban, Funil comercial e Insights em HTML/CSS/SVG nítidos, usando apenas dados fictícios definidos em `assets/js/crm-showcase.js`. As referências originais com dados reais não fazem parte dos assets do site. Empresas, contatos e indicadores podem ser editados no arquivo da demonstração; os estilos estão isolados em `assets/css/crm-showcase.css`.
+
+O carrossel alterna a cada 8 segundos quando visível, pausa durante leitura com mouse ou teclado e permite navegação manual. A navegação manual pausa a reprodução. Com movimento reduzido, inicia pausado. Em telas pequenas, tabelas e colunas têm rolagem interna.
+
+Execute `npm run lint` e `npm run test:e2e`. Os testes usam um servidor isolado na porta 8093 para não validar outro projeto que esteja aberto na porta 8080. Não há etapa de build nem typecheck: o site usa arquivos estáticos e JavaScript. As capturas do carrossel e dos mockups em escala 2× são geradas em `test-results/`.
