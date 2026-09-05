@@ -96,7 +96,7 @@
     `<svg viewBox="0 0 24 24" aria-hidden="true">${icons[name] || icons.chart}</svg>`;
   const screen = (id, name, content, index) =>
     `<section id="crm-screen-${id}" class="crm-demo" role="group" aria-roledescription="slide" aria-label="${index + 1} de 4: ${name}" ${index ? "hidden" : ""}>${content}</section>`;
-  const leadsScreen = `<div class="crm-demo__screen-heading"><div><h3>Seus embarcadores, em detalhe</h3><p>Conheça a demanda e o contato responsável.</p></div><span class="crm-demo__badge">6 exemplos de leads</span></div>
+  const leadsScreen = `<div class="crm-demo__screen-heading"><div><h3>Seus embarcadores, em detalhe</h3><p>Conheça a demanda e o contato responsável.</p></div></div>
     <div class="crm-demo__table-scroll" tabindex="0" role="region" aria-label="Tabela de leads fictícios; role para ver todas as colunas"><table class="crm-demo__table"><thead><tr><th>Empresa / segmento</th><th>Contato / cargo</th><th>Rota principal</th><th>Volume</th><th>Frequência</th><th>Operação</th></tr></thead><tbody>${leads.map((lead) => `<tr><td><strong>${lead.company}</strong><small>${lead.segment}</small></td><td>${lead.person}<small>${lead.role}</small></td><td>${lead.route}</td><td>${lead.volume}</td><td>${lead.frequency}</td><td><span class="crm-demo__operation">${lead.operation}</span></td></tr>`).join("")}</tbody></table></div>`;
   const stages = [
     "Novo lead",
@@ -112,7 +112,7 @@
     "Realizar reunião",
     "Acompanhar proposta",
   ];
-  const kanbanScreen = `<div class="crm-demo__screen-heading"><div><h3>Cada oportunidade, no próximo passo</h3><p>Da entrada do lead à negociação, com contexto.</p></div><span class="crm-demo__badge">6 exemplos em acompanhamento</span></div>
+  const kanbanScreen = `<div class="crm-demo__screen-heading"><div><h3>Cada oportunidade, no próximo passo</h3><p>Da entrada do lead à negociação, com contexto.</p></div></div>
     <div class="crm-demo__board" tabindex="0" role="region" aria-label="Kanban demonstrativo; role para ver todas as etapas">${stages
       .map(
         (stage, index) =>
@@ -127,7 +127,7 @@
       .join("")}</div>`;
   const funnelStages = [...stages, "Ganho"];
   const counts = [48, 36, 24, 12, 8, 4];
-  const funnelScreen = `<div class="crm-demo__screen-heading"><div><h3>Funil comercial</h3><p>Avanço acumulado das oportunidades em cada etapa.</p></div><span class="crm-demo__badge">Período simulado · 30 dias</span></div><div class="crm-demo__funnel-layout"><svg class="crm-demo__funnel" viewBox="0 0 380 310" role="img" aria-label="Funil ilustrativo: 48 leads recebidos e 4 ganhos na simulação">${counts
+  const funnelScreen = `<div class="crm-demo__screen-heading"><div><h3>Funil comercial</h3><p>Avanço acumulado das oportunidades em cada etapa.</p></div></div><div class="crm-demo__funnel-layout"><svg class="crm-demo__funnel" viewBox="0 0 380 310" role="img" aria-label="Funil ilustrativo: 48 leads recebidos e 4 ganhos na simulação">${counts
     .map((_count, i) => {
       const inset = i * 25;
       const y = i * 51;
@@ -154,7 +154,7 @@
     ["CLIQUES NO LINK", "1.200", "1,0% das impressões", "trend"],
     ["CONVERSÃO COMERCIAL", "8,3%", "4 ganhos em 48 leads", "chart"],
   ];
-  const insightsScreen = `<div class="crm-demo__screen-heading"><div><h3>Insights da aquisição</h3><p>Visibilidade da mídia ao acompanhamento comercial.</p></div><span class="crm-demo__badge">Período simulado · 30 dias</span></div><div class="crm-demo__metrics">${metrics.map(([label, value, detail, symbol]) => `<article><div>${icon(symbol)}<h4>${label}</h4></div><strong>${value}</strong><p>${detail}</p></article>`).join("")}</div>`;
+  const insightsScreen = `<div class="crm-demo__screen-heading"><div><h3>Insights da aquisição</h3><p>Visibilidade da mídia ao acompanhamento comercial.</p></div></div><div class="crm-demo__metrics">${metrics.map(([label, value, detail, symbol]) => `<article><div>${icon(symbol)}<h4>${label}</h4></div><strong>${value}</strong><p>${detail}</p></article>`).join("")}</div>`;
   const names = ["Leads", "Kanban", "Funil comercial", "Insights"];
   carousel.querySelector("[data-crm-screens]").innerHTML = [
     screen("leads", names[0], leadsScreen, 0),
@@ -199,7 +199,7 @@
       !document.hidden &&
       !carousel.contains(document.activeElement);
     if (running) timer = setInterval(() => show(index + 1), 8000);
-    pauseButton.textContent = paused ? "Reproduzir" : "Pausar";
+    pauseButton.textContent = paused ? "▶" : "Ⅱ";
     pauseButton.setAttribute(
       "aria-label",
       paused
