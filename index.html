@@ -17,20 +17,24 @@
 <meta property="og:description" content="O Ascenda Logistics estrutura a aquisição comercial de transportadoras: perfil logístico, redes de captação, qualificação e oportunidades de embarcadores para o comercial.">
 <meta property="og:url" content="https://ascendalogistics.com.br/">
 <meta property="og:image" content="https://ascendalogistics.com.br/assets/img/og-image.png">
+<meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Ascenda Logistics — Marketing e Vendas para transportadoras">
+<meta property="og:image:alt" content="Ascenda Logistics: Marketing e Vendas para transportadoras">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Ascenda Logistics | Captação de Embarcadores para Transportadoras">
 <meta name="twitter:description" content="O Ascenda Logistics estrutura a aquisição comercial de transportadoras: perfil logístico, redes de captação, qualificação e oportunidades de embarcadores para o comercial.">
 <meta name="twitter:image" content="https://ascendalogistics.com.br/assets/img/og-image.png">
+<meta name="twitter:image:alt" content="Ascenda Logistics: Marketing e Vendas para transportadoras">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
 <link rel="manifest" href="/manifest.webmanifest">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/styles.css?v=20260901-6">
+<link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/img/hero-truck-poster.webp" as="image" type="image/webp" fetchpriority="high">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20260906-6">
+<link rel="stylesheet" href="/assets/css/crm-showcase.css?v=20260906-2">
+  <link rel="stylesheet" href="/assets/css/operations-showcase.css?v=20260906-1">
+<link rel="stylesheet" href="/assets/css/results-showcase.css?v=20260906-6">
 <script>
 document.documentElement.classList.add('js');
 </script>
@@ -46,6 +50,7 @@ document.documentElement.classList.add('js');
       "url":"https://ascendalogistics.com.br/",
       "logo":{"@type":"ImageObject","url":"https://ascendalogistics.com.br/assets/img/icon-512.png"},
       "description":"Estrutura de aquisição comercial especializada em transportadoras.",
+      "sameAs":["https://www.instagram.com/marketing.ascenda/","https://www.linkedin.com/company/ascenda-logistics","https://www.facebook.com/ascendalogistics"],
       "telephone":"+55 19 97811-2013",
       "email":"comercial@ascendalogistics.com.br",
       "contactPoint":{
@@ -61,6 +66,15 @@ document.documentElement.classList.add('js');
       "url":"https://ascendalogistics.com.br/",
       "name":"Ascenda Logistics",
       "publisher":{"@id":"https://ascendalogistics.com.br/#organization"},
+      "inLanguage":"pt-BR"
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://ascendalogistics.com.br/#webpage",
+      "url":"https://ascendalogistics.com.br/",
+      "name":"Ascenda Logistics | Captação de Embarcadores para Transportadoras",
+      "isPartOf":{"@id":"https://ascendalogistics.com.br/#website"},
+      "about":{"@id":"https://ascendalogistics.com.br/#organization"},
       "inLanguage":"pt-BR"
     }
   ]
@@ -86,7 +100,7 @@ document.documentElement.classList.add('js');
 <header class="site-header" id="top">
   <div class="container header-inner">
     
-<a class="brand" href="/" aria-label="Ascenda Logistics - Página inicial">
+<a class="brand" href="/" aria-label="ASCENDA LOGISTICS MARKETING E VENDAS">
   <img src="/assets/img/logo-mark.png" alt="" width="42" height="42" class="brand__mark">
   <span class="brand__text">
     <strong>ASCENDA LOGISTICS</strong>
@@ -101,7 +115,7 @@ document.documentElement.classList.add('js');
       <a href="/sobre/">Sobre</a>
       <a href="/#faq">FAQ</a>
     </nav>
-    <a class="btn btn--primary header-cta" href="/#formulario" data-form-link>Quero novos embarcadores</a>
+    <a class="btn btn--primary header-cta" href="https://forms.fillout.com/t/a1tgNciQp6us" data-form-link target="_blank" rel="noopener">Quero novos embarcadores</a>
     <button class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Abrir menu">
       <span></span><span></span>
     </button>
@@ -112,15 +126,15 @@ document.documentElement.classList.add('js');
     <a href="/#operacoes">Operações</a>
     <a href="/sobre/">Sobre</a>
     <a href="/#faq">FAQ</a>
-    <a class="btn btn--primary" href="/#formulario" data-form-link>Quero novos embarcadores</a>
+    <a class="btn btn--primary" href="https://forms.fillout.com/t/a1tgNciQp6us" data-form-link target="_blank" rel="noopener">Quero novos embarcadores</a>
   </nav>
 </header>
 <div class="scroll-progress" aria-hidden="true"><span></span></div>
 
 <main id="conteudo">
 <section class="hero hero--video">
-  <video class="hero-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
-    <source src="/assets/img/hero-truck.mp4#t=1" type="video/mp4">
+  <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="/assets/img/hero-truck-poster.webp" fetchpriority="high" aria-hidden="true">
+    <source src="/assets/img/hero-truck-optimized.mp4#t=1" type="video/mp4">
   </video>
   <div class="hero-shade" aria-hidden="true"></div>
   <div class="hero-glow" aria-hidden="true"></div>
@@ -130,14 +144,15 @@ document.documentElement.classList.add('js');
       <h1>Novos embarcadores, <em>dentro do perfil da sua operação</em>, chegando ao comercial.</h1>
       <p>O Ascenda Logistics mapeia o perfil logístico da sua transportadora, cria redes de captação e qualifica cada oportunidade antes de ela chegar à sua equipe.</p>
       <div class="hero-actions">
-        <a href="#formulario" class="btn btn--primary btn--large" data-form-link>Quero novos embarcadores <span aria-hidden="true">→</span></a>
+        <a href="https://forms.fillout.com/t/a1tgNciQp6us" class="btn btn--primary btn--large" data-form-link target="_blank" rel="noopener">Quero novos embarcadores <span aria-hidden="true">→</span></a>
         <a href="#como-funciona" class="btn btn--ghost btn--large">Entender como funciona</a>
       </div>
     </div>
   </div>
 </section>
 
-<section class="difference-section" id="como-funciona" data-difference>
+<template id="legacy-difference-section">
+<section class="difference-section" id="como-funciona-legado" data-difference-legacy>
   <div class="difference-section__container">
     <div class="difference-section__composition">
       <div class="difference-section__left">
@@ -221,7 +236,7 @@ document.documentElement.classList.add('js');
           <span class="difference-hub__check"><svg viewBox="0 0 24 24"><path d="m7 12.5 3.2 3.2L17.5 8"/></svg></span>
         </div>
 
-        <img class="difference-scene-image" src="/assets/img/difference-logistics-diorama-v2.png" alt="" width="1672" height="941" loading="lazy" decoding="async">
+        <img class="difference-scene-image" src="/assets/img/difference-logistics-diorama-v2.png" srcset="/assets/img/difference-logistics-diorama-v2.webp" alt="" width="1672" height="941" loading="lazy" decoding="async">
 
         <svg class="difference-scene" viewBox="0 0 720 430" aria-hidden="true">
           <defs>
@@ -288,13 +303,50 @@ document.documentElement.classList.add('js');
     </aside>
   </div>
 </section>
+</template>
 
-<aside class="inline-cta" aria-label="Chamada para diagnóstico da operação">
-  <div class="container inline-cta__inner">
-    <div><span>PRONTO PARA DAR O PRÓXIMO PASSO?</span><strong>Descubra quais embarcadores combinam com a sua operação.</strong></div>
-    <a class="btn btn--primary" href="#formulario" data-form-link>Quero analisar minha operação <span aria-hidden="true">→</span></a>
+<section class="fit-section" id="como-funciona" data-difference aria-labelledby="fit-section-title">
+  <div class="fit-section__inner">
+    <header class="fit-section__copy">
+      <span class="fit-section__eyebrow">A DIFERENÇA COMEÇA AQUI</span>
+      <h2 id="fit-section-title">Nem todo embarcador<br>serve para a sua<br>operação.</h2>
+      <p>Por isso, o Ascenda começa entendendo<br>rota, carga, capacidade e perfil comercial<br>antes de iniciar a captação.</p>
+      <a class="btn btn--primary fit-section__cta" href="https://forms.fillout.com/t/a1tgNciQp6us" data-form-link target="_blank" rel="noopener">Falar com um especialista <span aria-hidden="true">→</span></a>
+    </header>
+
+    <div class="fit-section__flow" aria-label="Fluxo de definição da oportunidade ideal">
+      <article class="fit-step" data-fit-step>
+        <span class="fit-step__icon" aria-hidden="true"><img src="/assets/img/difference-icons/operacao.png" srcset="/assets/img/difference-icons/operacao.webp" alt="" width="1254" height="1254" loading="lazy" decoding="async"></span>
+        <strong>Operação</strong>
+        <p>Entendemos sua<br>rota, carga e<br>capacidade.</p>
+      </article>
+      <span class="fit-section__connector" aria-hidden="true"></span>
+      <article class="fit-step" data-fit-step>
+        <span class="fit-step__icon" aria-hidden="true"><img src="/assets/img/difference-icons/perfil.png" srcset="/assets/img/difference-icons/perfil.webp" alt="" width="1254" height="1254" loading="lazy" decoding="async"></span>
+        <strong>Perfil</strong>
+        <p>Avaliamos o seu<br>perfil comercial<br>e necessidades.</p>
+      </article>
+      <span class="fit-section__connector" aria-hidden="true"></span>
+      <article class="fit-step" data-fit-step>
+        <span class="fit-step__icon" aria-hidden="true"><img src="/assets/img/difference-icons/filtro.png" srcset="/assets/img/difference-icons/filtro.webp" alt="" width="1254" height="1254" loading="lazy" decoding="async"></span>
+        <strong>Filtro</strong>
+        <p>Aplicamos nossos<br>critérios para<br>garantir o fit.</p>
+      </article>
+      <span class="fit-section__connector" aria-hidden="true"></span>
+      <article class="fit-step" data-fit-step>
+        <span class="fit-step__icon" aria-hidden="true"><img src="/assets/img/difference-icons/match.png" srcset="/assets/img/difference-icons/match.webp" alt="" width="1254" height="1254" loading="lazy" decoding="async"></span>
+        <strong>Match</strong>
+        <p>Conectamos você<br>aos embarcadores<br>ideais.</p>
+      </article>
+      <span class="fit-section__connector" aria-hidden="true"></span>
+      <article class="fit-step" data-fit-step>
+        <span class="fit-step__icon" aria-hidden="true"><img src="/assets/img/difference-icons/oportunidade.png" srcset="/assets/img/difference-icons/oportunidade.webp" alt="" width="1254" height="1254" loading="lazy" decoding="async"></span>
+        <strong>Oportunidade</strong>
+        <p>Apresentamos apenas<br>oportunidades que<br>possuem valor real.</p>
+      </article>
+    </div>
   </div>
-</aside>
+</section>
 
 <section class="shippers-section" id="embarcadores" data-shippers>
   <div class="shippers-section__container">
@@ -314,12 +366,7 @@ document.documentElement.classList.add('js');
           <h3>Indústrias e<br> fabricantes</h3>
           <p>Empresas com movimentação recorrente, produtos industrializados e necessidade de transporte alinhada à capacidade da operação.</p>
         </div>
-        <img class="shipper-type-card__image" src="/assets/img/shipper-industries.png" alt="" width="1672" height="940" loading="lazy" decoding="async">
-        <div class="shipper-type-card__tags" aria-label="Características">
-          <span><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="4" y="4" width="12" height="12" rx="1"/><path d="M4 8h12M8 4v12"/></svg>Volume recorrente</span>
-          <span><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="M10 6v4l3 2"/></svg>Produtos industrializados</span>
-          <span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 3 6 11H4z"/><path d="M10 7v3m0 2v.1"/></svg>Alinhamento operacional</span>
-        </div>
+        <img class="shipper-type-card__image" src="/assets/img/shipper-industries.png" srcset="/assets/img/shipper-industries.webp" alt="" width="1691" height="930" loading="lazy" decoding="async">
       </article>
     </div>
 
@@ -333,12 +380,7 @@ document.documentElement.classList.add('js');
           <h3>Distribuidores e<br> atacadistas</h3>
           <p>Operações com frequência, rotas definidas e demanda para carga fechada, fracionado ou distribuição.</p>
         </div>
-        <img class="shipper-type-card__image" src="/assets/img/shipper-distributors.png" alt="" width="1672" height="940" loading="lazy" decoding="async">
-        <div class="shipper-type-card__tags" aria-label="Características">
-          <span><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="4" y="4" width="12" height="12" rx="1"/><path d="M4 8h12M8 4v12"/></svg>Frequência</span>
-          <span><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="M10 6v4l3 2"/></svg>Rotas definidas</span>
-          <span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 3 6 11H4z"/><path d="M10 7v3m0 2v.1"/></svg>Carga fechada</span>
-        </div>
+        <img class="shipper-type-card__image" src="/assets/img/shipper-distributors.png" srcset="/assets/img/shipper-distributors.webp" alt="" width="1661" height="947" loading="lazy" decoding="async">
       </article>
 
       <article class="shipper-type-card" data-shipper-card>
@@ -350,12 +392,7 @@ document.documentElement.classList.add('js');
           <h3>Varejo e<br> e-commerce</h3>
           <p>Perfis aderentes a distribuição, last mile, cross-docking e fluxos de alta frequência.</p>
         </div>
-        <img class="shipper-type-card__image" src="/assets/img/shipper-ecommerce.png" alt="" width="1672" height="940" loading="lazy" decoding="async">
-        <div class="shipper-type-card__tags" aria-label="Características">
-          <span><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="5" y="4" width="10" height="12" rx="1"/><path d="M8 4v12"/></svg>Last mile</span>
-          <span><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="M10 6v4l3 2"/></svg>Cross-docking</span>
-          <span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 3 6 11H4z"/><path d="M10 7v3m0 2v.1"/></svg>Alta frequência</span>
-        </div>
+        <img class="shipper-type-card__image" src="/assets/img/shipper-ecommerce.png" srcset="/assets/img/shipper-ecommerce.webp" alt="" width="1709" height="920" loading="lazy" decoding="async">
       </article>
 
       <article class="shipper-type-card" data-shipper-card>
@@ -367,16 +404,18 @@ document.documentElement.classList.add('js');
           <h3>Importadores e<br> exportadores</h3>
           <p>Quando a transportadora busca rotas internacionais, Mercosul ou projetos com necessidades específicas.</p>
         </div>
-        <img class="shipper-type-card__image" src="/assets/img/shipper-international.png" alt="" width="1672" height="940" loading="lazy" decoding="async">
-        <div class="shipper-type-card__tags" aria-label="Características">
-          <span><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="M4 10h12M10 4c2 2 2 10 0 12M10 4c-2 2-2 10 0 12"/></svg>Rotas internacionais</span>
-          <span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 7 10 4l6 3v7l-6 3-6-3z"/></svg>Mercosul</span>
-          <span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 3 2 4 4 .6-3 3 .7 4.4-3.7-2-3.7 2L7 10.6l-3-3L8 7z"/></svg>Projetos específicos</span>
-        </div>
+        <img class="shipper-type-card__image" src="/assets/img/shipper-international.png" srcset="/assets/img/shipper-international.webp" alt="" width="1709" height="920" loading="lazy" decoding="async">
       </article>
     </div>
   </div>
 </section>
+
+<aside class="inline-cta" aria-label="Chamada para diagnóstico da operação">
+  <div class="container inline-cta__inner">
+    <div><span>PRONTO PARA DAR O PRÓXIMO PASSO?</span><strong>Descubra quais embarcadores combinam com a sua operação.</strong></div>
+    <a class="btn btn--primary" href="https://forms.fillout.com/t/a1tgNciQp6us" data-form-link target="_blank" rel="noopener">Quero analisar minha operação <span aria-hidden="true">→</span></a>
+  </div>
+</aside>
 
 <section class="section section--navy" id="perfil">
   <div class="container profile-layout">
@@ -406,139 +445,146 @@ document.documentElement.classList.add('js');
   </div>
 </section>
 
-<section class="capture-section" id="redes" data-capture-network>
-  <div class="capture-section__container">
-    <header class="capture-section__header reveal">
-      <span class="capture-section__eyebrow">REDES DE CAPTAÇÃO</span>
-      <h2>De onde os<br>embarcadores vêm.</h2>
+<section class="capture-section capture-section--v0" id="redes" data-capture-network aria-labelledby="redes-captacao-title">
+  <div class="capture-hybrid">
+    <header class="capture-hybrid__header">
+      <span>REDES DE CAPTAÇÃO</span>
+      <h2 id="redes-captacao-title">De onde os <br>embarcadores vêm.</h2>
       <p>Não existe uma rede única para todos os casos. Cada canal cumpre<br>um papel diferente na aquisição e na conversão.</p>
     </header>
-
-    <div class="capture-network reveal" aria-label="Redes que conectam embarcadores ao perfil logístico">
-      <svg class="capture-network__connections" viewBox="0 0 1180 560" aria-hidden="true">
-        <defs>
-          <marker id="capture-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 8 4 0 8Z" fill="#9db7d2"/></marker>
-        </defs>
-        <path d="M365 122 C455 132 473 203 515 239" marker-end="url(#capture-arrow)"/>
-        <path d="M815 122 C725 132 707 203 665 239" marker-end="url(#capture-arrow)"/>
-        <path d="M356 424 C446 413 472 348 515 320" marker-end="url(#capture-arrow)"/>
-        <path d="M824 424 C734 413 708 348 665 320" marker-end="url(#capture-arrow)"/>
-        <circle cx="447" cy="168" r="5"/><circle cx="733" cy="168" r="5"/><circle cx="444" cy="386" r="5"/><circle cx="736" cy="386" r="5"/>
-      </svg>
-
-      <div class="capture-decor capture-decor--audience" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="24" cy="15" r="5"/><circle cx="12" cy="22" r="4"/><circle cx="36" cy="22" r="4"/><path d="M14 38c0-7 4-12 10-12s10 5 10 12M4 38c0-6 3-10 8-10M44 38c0-6-3-10-8-10"/></svg></div>
-      <div class="capture-decor capture-decor--heart" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 38S8 29 8 18c0-8 10-11 16-4 6-7 16-4 16 4 0 11-16 20-16 20Z"/></svg></div>
-      <div class="capture-decor capture-decor--like" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M18 39H9V20h9M18 36l8 3h9c3 0 4-2 5-5l3-11c1-4-1-6-5-6H29l1-7c0-3-2-5-5-5l-7 15Z"/></svg></div>
-      <div class="capture-decor capture-decor--search" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="21" cy="21" r="12"/><path d="m30 30 10 10"/></svg></div>
-      <div class="capture-decor capture-decor--chart" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M8 39V27h7v12M20 39V19h7v20M32 39V9h7v30"/></svg></div>
-      <div class="capture-decor capture-decor--shield" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 5 39 11v11c0 10-6 17-15 21C15 39 9 32 9 22V11Z"/><path d="m17 24 5 5 10-11"/></svg></div>
-      <div class="capture-decor capture-decor--badge" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="7" y="10" width="34" height="28" rx="3"/><circle cx="17" cy="22" r="5"/><path d="M11 33c1-5 4-7 7-7s6 2 7 7M28 19h8M28 25h8M28 31h6"/></svg></div>
-      <div class="capture-decor capture-decor--support" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="24" cy="19" r="7"/><path d="M10 39c2-8 7-12 14-12s12 4 14 12M8 23v-4c0-9 7-15 16-15s16 6 16 15v4M8 23h5v10H8ZM35 23h5v10h-5Z"/></svg></div>
-      <div class="capture-decor capture-decor--chats" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M6 9h29v20H18L10 35v-6H6Z"/><path d="M18 29v8h14l7 5v-5h4V18h-8"/><path d="M13 18h3M20 18h3M27 18h3"/></svg></div>
-
-      <article class="capture-channel capture-channel--meta" data-capture-card>
-        <div class="capture-channel__icon capture-channel__icon--meta" aria-hidden="true"><svg viewBox="0 0 64 42"><path d="M7 33C12 15 19 7 27 20l5 8 5-8C45 7 52 15 57 33M7 33c4 6 10 4 15-5l5-8M57 33c-4 6-10 4-15-5l-5-8"/></svg></div>
-        <div class="capture-channel__copy"><small>REDE DE ATENÇÃO</small><strong>Meta</strong><span>Facebook + Instagram</span></div>
-      </article>
-
-      <article class="capture-channel capture-channel--google" data-capture-card>
-        <div class="capture-channel__icon capture-channel__icon--google" aria-hidden="true"><svg viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20H24v8h11.3C33.7 32.7 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7A19.8 19.8 0 0 0 24 4C13 4 4 13 4 24s9 20 20 20c11.6 0 19.2-8.2 19.2-19.7 0-1.3-.1-2.3-.3-4.3Z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8A12 12 0 0 1 24 12c3.1 0 5.9 1.2 8 3.1l5.7-5.7A19.8 19.8 0 0 0 24 4c-7.7 0-14.4 4.4-17.7 10.7Z"/><path fill="#4CAF50" d="M24 44c5.2 0 10-2 13.5-5.2l-6.2-5.1A11.7 11.7 0 0 1 24 36a12 12 0 0 1-11-7.4l-6.5 5A20 20 0 0 0 24 44Z"/><path fill="#1976D2" d="M43.6 20H24v8h11.3a12 12 0 0 1-4 5.7l6.2 5.1c3.9-3.6 6.1-9 6.1-14.5 0-1.3-.1-2.3-.3-4.3Z"/></svg></div>
-        <div class="capture-channel__copy"><small>REDE DE INTENÇÃO</small><strong>Google</strong><span>quando a busca faz sentido</span></div>
-      </article>
-
-      <article class="capture-channel capture-channel--trust" data-capture-card>
-        <div class="capture-channel__icon capture-channel__icon--trust" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="17"/><path d="M7 24h34M24 7c6 6 8 27 0 34M24 7c-6 6-8 27 0 34"/></svg></div>
-        <div class="capture-channel__copy"><small>REDE DE CONFIANÇA</small><strong>Site + presença</strong><span>validação da empresa</span></div>
-      </article>
-
-      <article class="capture-channel capture-channel--contact" data-capture-card>
-        <div class="capture-channel__icon capture-channel__icon--contact" aria-hidden="true"><span><svg viewBox="0 0 32 32"><path d="M9 6c1-1 4 4 4 5 0 1-2 2-2 3 1 3 4 6 7 7 1 0 2-2 3-2 2 0 6 3 5 4-1 3-3 5-6 5C13 27 5 19 5 12c0-3 1-5 4-6Z"/></svg></span><span><svg viewBox="0 0 32 32"><path d="M9 6c1-1 4 4 4 5 0 1-2 2-2 3 1 3 4 6 7 7 1 0 2-2 3-2 2 0 6 3 5 4-1 3-3 5-6 5C13 27 5 19 5 12c0-3 1-5 4-6Z"/></svg></span></div>
-        <div class="capture-channel__copy"><small>REDE DE CONTATO</small><strong>Telefone +<br>WhatsApp</strong><span>conversa humana</span></div>
-      </article>
-
-      <div class="capture-hub">
-        <img src="/assets/img/logo-mark.png" width="64" height="64" alt="">
-        <strong>Perfil logístico</strong>
-        <span>centro da decisão</span>
-      </div>
-    </div>
-
-    <blockquote class="capture-quote reveal">
-      <span class="capture-quote__mark" aria-hidden="true">“</span>
-      <div><p>“Por trás de todo CNPJ existe uma pessoa tomando decisões.”</p><span>O decisor não precisa procurar “transportadora” no Instagram. A comunicação pode aparecer no contexto certo<br>e transformar uma necessidade existente em resposta.</span></div>
-      <svg class="capture-quote__people" viewBox="0 0 120 86" aria-hidden="true"><ellipse cx="60" cy="73" rx="48" ry="10"/><circle cx="60" cy="27" r="14"/><circle cx="35" cy="37" r="11"/><circle cx="85" cy="37" r="11"/><path d="M34 68c2-18 11-28 26-28s24 10 26 28M12 68c2-14 10-22 23-22M108 68c-2-14-10-22-23-22"/></svg>
+    <figure class="capture-hybrid__panel">
+      <img src="/assets/img/redes-captacao-painel.png" srcset="/assets/img/redes-captacao-painel.webp" width="1400" height="616" loading="lazy" decoding="async" alt="Meta, Google, site e presença, telefone e WhatsApp conectados ao perfil logístico">
+    </figure>
+    <blockquote class="capture-hybrid__quote">
+      <span aria-hidden="true">“</span>
+      <div><p>“Por trás de todo CNPJ existe uma pessoa tomando decisões.”</p><small>O decisor não precisa procurar “transportadora” no Instagram. A comunicação pode aparecer no contexto certo<br>e transformar uma necessidade existente em resposta.</small></div>
+      <svg viewBox="0 0 120 86" aria-hidden="true"><ellipse cx="60" cy="73" rx="48" ry="10"/><circle cx="60" cy="27" r="14"/><circle cx="35" cy="37" r="11"/><circle cx="85" cy="37" r="11"/><path d="M34 68c2-18 11-28 26-28s24 10 26 28M12 68c2-14 10-22 23-22M108 68c-2-14-10-22-23-22"/></svg>
     </blockquote>
   </div>
 </section>
 
-<section class="section section--navy" id="dados">
+<section class="section section--navy crm-showcase" id="dados" aria-labelledby="crm-showcase-title">
   <div class="container">
-    <div class="section-head section-head--split reveal">
-      <div><span class="eyebrow eyebrow--orange">O QUE CHEGA</span><h2>Seu comercial recebe contexto. Não apenas nome e telefone.</h2></div>
-      <p>Os campos de qualificação ajudam a priorizar a abordagem e reduzem o tempo perdido tentando descobrir se existe fit.</p>
+    <header class="crm-showcase__heading">
+      <span class="eyebrow eyebrow--orange">O QUE CHEGA AO SEU COMERCIAL</span>
+      <h2 id="crm-showcase-title">Embarcadores com perfil para a sua operação.</h2>
+      <p>Indústrias, distribuidores e empresas com demanda de transporte. Seu time conhece a rota, o volume, a frequência e quem decide para abordar cada oportunidade com clareza.</p>
+    </header>
+    <div class="crm-showcase__carousel" data-crm-carousel role="region" aria-roledescription="carrossel" aria-label="Visão do sistema comercial">
+      <div class="crm-showcase__navigation" hidden>
+        <div class="crm-showcase__tabs" role="group" aria-label="Escolher tela">
+          <button type="button" data-crm-tab="0" aria-pressed="true">Leads</button>
+          <button type="button" data-crm-tab="1" aria-pressed="false">Kanban</button>
+          <button type="button" data-crm-tab="2" aria-pressed="false">Funil comercial</button>
+          <button type="button" data-crm-tab="3" aria-pressed="false">Insights</button>
+        </div>
+      </div>
+      <div class="crm-showcase__screens" data-crm-screens></div>
+      <noscript><p class="crm-showcase__fallback">O sistema organiza a Indústria Aurora, carga fechada, rota SP → PR, 24 t por embarque e frequência semanal. O comercial recebe o contato responsável e acompanha a oportunidade até a negociação.</p></noscript>
+      <span class="crm-showcase__sr" data-crm-announcement aria-live="polite" aria-atomic="true"></span>
     </div>
-    <div class="crm-mock reveal" data-skeleton-wrap>
-      <div class="crm-topbar">
-        <div><strong>Oportunidades</strong><span>Dados comerciais organizados</span></div>
-        <button type="button" tabindex="-1">Sincronizado</button>
-      </div>
-      <div class="crm-filters"><span>Buscar empresa, contato ou cargo...</span><span>Potencial</span><span>Região</span><span>Operação</span></div>
-      <div class="crm-table" role="table" aria-label="Exemplo de dados de oportunidades">
-        <div class="crm-row crm-row--head" role="row"><span>EMPRESA</span><span>CONTATO</span><span>CARGO</span><span>SEGMENTO</span><span>REGIÃO</span><span>OPERAÇÃO</span><span>POTENCIAL</span></div>
-        <div class="crm-row" role="row"><span>Indústria Horizonte</span><span>Marina Costa</span><span>Diretoria</span><span>Indústria</span><span>SP → PR</span><span>Carga fechada</span><span><b class="tag tag--hot">Alto</b></span></div>
-        <div class="crm-row" role="row"><span>Atlas Distribuição</span><span>Rafael Lima</span><span>Ger. Logística</span><span>Distribuidor</span><span>Sudeste</span><span>Fracionado recorrente</span><span><b class="tag">Aderente</b></span></div>
-        <div class="crm-row" role="row"><span>Nova Base Comércio</span><span>Daniel Rocha</span><span>Sócio</span><span>Atacado</span><span>Mercosul</span><span>Lotação</span><span><b class="tag tag--hot">Alto</b></span></div>
-      </div>
-      <div class="crm-mobile-cards">
-        <article><strong>Indústria Horizonte</strong><span>Marina Costa • Diretoria</span><small>SP → PR • Carga fechada</small><b class="tag tag--hot">Alto potencial</b></article>
-        <article><strong>Atlas Distribuição</strong><span>Rafael Lima • Ger. Logística</span><small>Sudeste • Fracionado recorrente</small><b class="tag">Aderente</b></article>
-      </div>
+    <div class="crm-showcase__dots" data-crm-dots role="group" aria-label="Selecionar mockup" hidden>
+      <button type="button" data-crm-dot="0" aria-label="Mostrar Leads" aria-pressed="true"></button>
+      <button type="button" data-crm-dot="1" aria-label="Mostrar Kanban" aria-pressed="false"></button>
+      <button type="button" data-crm-dot="2" aria-label="Mostrar Funil comercial" aria-pressed="false"></button>
+      <button type="button" data-crm-dot="3" aria-label="Mostrar Insights" aria-pressed="false"></button>
+      <button class="crm-showcase__keyboard-pause" type="button" data-crm-pause aria-label="Pausar alternância automática">Pausar</button>
+    </div>
+    <a class="btn btn--primary crm-showcase__cta" href="https://forms.fillout.com/t/a1tgNciQp6us" data-form-link target="_blank" rel="noopener">Quero levar oportunidades ao meu comercial</a>
+  </div>
+</section>
+
+<section class="section operations-showcase" id="operacoes" aria-labelledby="operations-showcase-title">
+  <div class="container operations-showcase__container">
+    <header class="operations-showcase__header">
+      <span class="eyebrow">OPERAÇÕES</span>
+      <h2 id="operations-showcase-title">Operações pensadas para o seu modelo de transporte<span class="operations-showcase__accent">.</span></h2>
+    </header>
+    <div class="operations-showcase__row" data-ops-row="primary" data-ops-direction="rtl" aria-label="Operações principais">
+      <div class="operations-showcase__viewport"><div class="operations-showcase__track" data-ops-track>
+        <article class="operations-showcase__card" style="--ops-image:image-set(url('/assets/img/operations/carga-fechada.webp') type('image/webp'),url('/assets/img/operations/carga-fechada.png') type('image/png'))"><div class="operations-showcase__card-content"><h3>Carga fechada</h3><p>Lotação, truck, carreta e projetos de maior volume por embarque.</p></div></article>
+        <article class="operations-showcase__card" style="--ops-image:image-set(url('/assets/img/operations/fracionado-recorrente.webp') type('image/webp'),url('/assets/img/operations/fracionado-recorrente.png') type('image/png'))"><div class="operations-showcase__card-content"><h3>Fracionado recorrente</h3><p>Demandas frequentes, com volume mínimo, região e periodicidade definidos.</p></div></article>
+        <article class="operations-showcase__card" style="--ops-image:image-set(url('/assets/img/operations/ocupacao-rotas.webp') type('image/webp'),url('/assets/img/operations/ocupacao-rotas.png') type('image/png'))"><div class="operations-showcase__card-content"><h3>Ocupação de rotas</h3><p>Captação por origem, destino e oportunidades de ida e retorno.</p></div></article>
+        <article class="operations-showcase__card" style="--ops-image:image-set(url('/assets/img/operations/operacoes-mercosul.webp') type('image/webp'),url('/assets/img/operations/operacoes-mercosul.png') type('image/png'))"><div class="operations-showcase__card-content"><h3>Operações Mercosul</h3><p>Captação para fluxos internacionais compatíveis com a cobertura da transportadora.</p></div></article>
+        <article class="operations-showcase__card" style="--ops-image:image-set(url('/assets/img/operations/distribuicao-last-mile.webp') type('image/webp'),url('/assets/img/operations/distribuicao-last-mile.png') type('image/png'))"><div class="operations-showcase__card-content"><h3>Distribuição e last mile</h3><p>E-commerce, varejo e entregas distribuídas em rotas regionais ou urbanas.</p></div></article>
+        <article class="operations-showcase__card" style="--ops-image:image-set(url('/assets/img/operations/armazenagem-distribuicao.webp') type('image/webp'),url('/assets/img/operations/armazenagem-distribuicao.png') type('image/png'))"><div class="operations-showcase__card-content"><h3>Armazenagem e distribuição</h3><p>Operações combinadas conforme capacidade, giro e cobertura regional.</p></div></article>
+      </div></div>
+    </div>
+    <div class="operations-showcase__row" data-ops-row="specialties" data-ops-direction="ltr" aria-label="Especialidades operacionais">
+      <div class="operations-showcase__viewport"><div class="operations-showcase__track" data-ops-track>
+        <article class="operations-showcase__card" style="--ops-image:image-set(url('/assets/img/operations/refrigerado-congelado.webp') type('image/webp'),url('/assets/img/operations/refrigerado-congelado.png') type('image/png'))"><div class="operations-showcase__card-content"><h3>Refrigerado e congelado</h3><p>Alimentos, bebidas e produtos que exigem controle de temperatura.</p></div></article>
+        <article class="operations-showcase__card" style="--ops-image:image-set(url('/assets/img/operations/quimicos-perigosos.webp') type('image/webp'),url('/assets/img/operations/quimicos-perigosos.png') type('image/png'))"><div class="operations-showcase__card-content"><h3>Químicos e produtos perigosos</h3><p>Cargas com exigências regulatórias e alto nível de segurança.</p></div></article>
+        <article class="operations-showcase__card" style="--ops-image:image-set(url('/assets/img/operations/farmaceutico-saude.webp') type('image/webp'),url('/assets/img/operations/farmaceutico-saude.png') type('image/png'))"><div class="operations-showcase__card-content"><h3>Farmacêutico e saúde</h3><p>Medicamentos, vacinas e insumos com rastreabilidade e controle rigoroso.</p></div></article>
+        <article class="operations-showcase__card" style="--ops-image:image-set(url('/assets/img/operations/conteineres-portuario.webp') type('image/webp'),url('/assets/img/operations/conteineres-portuario.png') type('image/png'))"><div class="operations-showcase__card-content"><h3>Contêineres e portuário</h3><p>Captação para operações de importação, exportação e movimentação de contêineres.</p></div></article>
+        <article class="operations-showcase__card" style="--ops-image:image-set(url('/assets/img/operations/cargas-especiais-projeto.webp') type('image/webp'),url('/assets/img/operations/cargas-especiais-projeto.png') type('image/png'))"><div class="operations-showcase__card-content"><h3>Cargas especiais e projeto</h3><p>Equipamentos de grande porte e operações sob medida.</p></div></article>
+        <article class="operations-showcase__card" style="--ops-image:image-set(url('/assets/img/operations/cargas-alto-valor.webp') type('image/webp'),url('/assets/img/operations/cargas-alto-valor.png') type('image/png'))"><div class="operations-showcase__card-content"><h3>Cargas de alto valor</h3><p>Operações com maior nível de segurança, controle e rastreabilidade.</p></div></article>
+      </div></div>
     </div>
   </div>
 </section>
 
-<section class="section" id="operacoes">
-  <div class="container">
-    <div class="section-head section-head--split reveal">
-      <div><span class="eyebrow">OPERAÇÕES</span><h2>O método se adapta à sua operação.</h2></div>
-      <p>Não é “atendemos tudo”. É definir o recorte certo e construir uma aquisição coerente com ele.</p>
-    </div>
-    <div class="operations-grid">
-      <article class="operation-card reveal"><span>01</span><h3>Quero carga fechada</h3><p>Lotação, truck, carreta e projetos com maior volume por embarque.</p></article>
-      <article class="operation-card reveal"><span>02</span><h3>Quero fracionado recorrente</h3><p>Filtros por volume mínimo, frequência e região.</p></article>
-      <article class="operation-card reveal"><span>03</span><h3>Quero preencher uma rota</h3><p>Estratégias para origem, destino e oportunidades de retorno.</p></article>
-      <article class="operation-card reveal"><span>04</span><h3>Quero abrir Mercosul</h3><p>Captação voltada a operações internacionais quando aderentes.</p></article>
-      <article class="operation-card reveal"><span>05</span><h3>Quero distribuição / last mile</h3><p>Perfis de e-commerce, varejo e operações de distribuição.</p></article>
-      <article class="operation-card reveal"><span>06</span><h3>Quero armazenagem + distribuição</h3><p>Captação coerente com capacidade, giro e cobertura regional.</p></article>
+<section class="results-showcase" id="resultados" aria-labelledby="results-showcase-title">
+  <div class="results-showcase__hero">
+    <div class="container results-showcase__container">
+      <div class="results-showcase__brandline"><span></span>ESTRATÉGIA QUE GERA NOVOS NEGÓCIOS</div>
+      <header class="results-showcase__header reveal">
+        <span class="eyebrow eyebrow--orange">RESULTADOS REAIS</span>
+        <h2 id="results-showcase-title">Resultados de <em>operações reais</em></h2>
+        <p>Do primeiro contato à captação de embarcadores, dois cases que mostram etapas diferentes da aquisição comercial.</p>
+      </header>
+
+      <div class="results-showcase__cases">
+        <article class="result-case reveal">
+          <div class="result-case__brand"><img src="/assets/img/clientes/tpl-logistica-case.png" srcset="/assets/img/clientes/tpl-logistica-case.webp" alt="TPL Logística" width="2000" height="2000" loading="lazy" decoding="async"></div>
+          <div class="result-case__divider" aria-hidden="true"></div>
+          <div class="result-case__result">
+            <div class="result-case__headline result-case__number"><strong>115</strong><span>contatos<br><b>em 2 meses</b></span></div>
+            <a class="result-case__instagram" href="https://www.instagram.com/tpllogistica/" target="_blank" rel="noopener" aria-label="@tpllogistica, Ver TPL Logística no Instagram">
+              <img class="result-case__instagram-icon" src="/assets/img/instagram.svg" alt="" width="24" height="24">
+              <span>@tpllogistica</span>
+            </a>
+          </div>
+          <ul class="result-case__metrics" aria-label="Perfil dos formulários analisados da TPL">
+            <li><strong>79%</strong><span>decisores</span></li>
+            <li><strong>90%</strong><span>norte</span></li>
+            <li><strong>72%</strong><span>fracionado recorrente</span></li>
+          </ul>
+        </article>
+
+        <article class="result-case result-case--solution reveal reveal--delay">
+          <div class="result-case__brand"><img src="/assets/img/clientes/solucao-case.png" srcset="/assets/img/clientes/solucao-case.webp" alt="Solução Locação e Transportes" width="2000" height="2000" loading="lazy" decoding="async"></div>
+          <div class="result-case__divider" aria-hidden="true"></div>
+          <div class="result-case__result">
+            <div class="result-case__headline result-case__number"><strong>18</strong><span>embarcadores<br><b>em 14 dias</b></span></div>
+            <a class="result-case__instagram" href="https://www.instagram.com/solucao.locacao.transportes" target="_blank" rel="noopener" aria-label="@solucao.locacao.transportes, Ver Solução Locação e Transportes no Instagram">
+              <img class="result-case__instagram-icon" src="/assets/img/instagram.svg" alt="" width="24" height="24">
+              <span>@solucao.locacao.transportes</span>
+            </a>
+          </div>
+          <ul class="result-case__metrics result-case__metrics--solution" aria-label="Informações da campanha da Solução">
+            <li><strong>88,9%</strong><span>decisores</span></li>
+            <li><strong>70%</strong><span>sudoeste</span></li>
+            <li><strong>68,8%</strong><span>fracionado recorrente</span></li>
+          </ul>
+        </article>
+      </div>
     </div>
   </div>
-</section>
 
-<section class="section section--dark" id="resultados">
-  <div class="container">
-    <div class="section-head section-head--split reveal">
-      <div><span class="eyebrow eyebrow--orange">RESULTADOS</span><h2>Operações que já colocaram o método em campo.</h2></div>
-      <p>Cases reais de transportadoras que estruturaram a aquisição para alcançar embarcadores compatíveis com suas operações.</p>
+  <div class="results-showcase__proof">
+    <div class="container results-showcase__proof-container">
+      <div class="results-showcase__proof-head"><span class="eyebrow">ALGUMAS DAS EMPRESAS QUE JÁ ATENDEMOS</span><p>Diferentes perfis, regiões e modelos de operação.</p></div>
+      <ul class="results-showcase__logos" aria-label="Empresas atendidas pelo Ascenda">
+        <li><span class="results-showcase__logo-frame"><img class="results-showcase__logo-art" src="/assets/img/clientes/dgi-cargo.png" srcset="/assets/img/clientes/dgi-cargo.webp" alt="DGi Cargo" width="2172" height="724" loading="lazy" decoding="async"></span></li>
+        <li><span class="results-showcase__logo-frame"><img class="results-showcase__logo-art" src="/assets/img/clientes/logiflex.png" srcset="/assets/img/clientes/logiflex.webp" alt="Logiflex Transportes" width="2172" height="724" loading="lazy" decoding="async"></span></li>
+        <li><span class="results-showcase__logo-frame"><img class="results-showcase__logo-art" src="/assets/img/clientes/nextlog.png" srcset="/assets/img/clientes/nextlog.webp" alt="Nextlog Transportes" width="2172" height="724" loading="lazy" decoding="async"></span></li>
+        <li><span class="results-showcase__logo-frame"><img class="results-showcase__logo-art" src="/assets/img/clientes/brasil-pressa.png" srcset="/assets/img/clientes/brasil-pressa.webp" alt="Brasil Pressa" width="2172" height="724" loading="lazy" decoding="async"></span></li>
+        <li><span class="results-showcase__logo-frame results-showcase__logo-frame--dark"><img class="results-showcase__logo-art" src="/assets/img/clientes/transnasci.png" srcset="/assets/img/clientes/transnasci.webp" alt="TransNasci Transporte" width="2172" height="724" loading="lazy" decoding="async"></span></li>
+        <li><span class="results-showcase__logo-frame"><img class="results-showcase__logo-art" src="/assets/img/clientes/tpl-logistica.png" srcset="/assets/img/clientes/tpl-logistica.webp" alt="TPL Logística" width="2172" height="724" loading="lazy" decoding="async"></span></li>
+        <li><span class="results-showcase__logo-frame"><img class="results-showcase__logo-art" src="/assets/img/clientes/solucao.png" srcset="/assets/img/clientes/solucao.webp" alt="Solução Locação e Transportes" width="2172" height="724" loading="lazy" decoding="async"></span></li>
+      </ul>
+      <a class="btn btn--primary results-showcase__cta" href="https://forms.fillout.com/t/a1tgNciQp6us" data-form-link target="_blank" rel="noopener">Quero atrair novos embarcadores <span aria-hidden="true">→</span></a>
     </div>
-    <div class="cases-grid">
-      <article class="case-card reveal">
-        <div class="case-brand"><img src="/assets/img/tpl-logistica.png" alt="TPL Logística"><a href="https://www.instagram.com/tpllogistica/" target="_blank" rel="noopener">@tpllogistica ↗</a></div>
-        <div class="case-kicker">OPERAÇÃO NORTE • TPL LOGÍSTICA</div>
-        <div class="case-number">97</div>
-        <h3>oportunidades em menos de dois meses.</h3>
-        <p>A operação combinou fracionado regional e lotação nacional com uma captação direcionada. Aproximadamente 58% dos contatos alcançados estavam em nível de gestão ou decisão.</p>
-        <div class="case-tags"><span>Gestores / decisores</span><span>Distribuidores</span><span>Carga seca</span></div>
-      </article>
-      <article class="case-card reveal reveal--delay">
-        <div class="case-brand"><img src="/assets/img/solucao-transportes.png" alt="Solução Locação e Transportes"><a href="https://www.instagram.com/solucao.locacao.transportes" target="_blank" rel="noopener">@solucao.locacao.transportes ↗</a></div>
-        <div class="case-kicker">OPERAÇÃO SUDESTE • SOLUÇÃO TRANSPORTES</div>
-        <div class="case-number">18</div>
-        <h3>oportunidades em aproximadamente 1,5 semana.</h3>
-        <p>Em aproximadamente uma semana e meia, 16 dos 18 contatos estavam em nível de diretoria, sociedade ou gestão logística. A comunicação priorizou operações acima de uma tonelada.</p>
-        <div class="case-tags"><span>16/18 decisores/gestão</span><span>Indústrias</span><span>5+ t/mês</span></div>
-      </article>
-    </div>
-    <div class="results-disclaimer reveal">Os resultados acima são históricos observados em operações específicas e não constituem garantia de volume, reuniões ou contratos. Performance varia por oferta, rota, verba, mercado e execução comercial.</div>
   </div>
 </section>
 
@@ -567,7 +613,7 @@ document.documentElement.classList.add('js');
     <span class="eyebrow eyebrow--orange">PRONTO PARA AVANÇAR?</span>
     <h2>Vamos ajudar sua transportadora a conquistar novos embarcadores.</h2>
     <p>Responda algumas perguntas para entendermos sua operação e o perfil de embarcador que faz sentido para ela.</p>
-    <a class="btn btn--primary btn--large" href="#formulario" data-form-link>Quero novos embarcadores <span aria-hidden="true">→</span></a>
+    <a class="btn btn--primary btn--large" href="https://forms.fillout.com/t/a1tgNciQp6us" data-form-link target="_blank" rel="noopener">Quero novos embarcadores <span aria-hidden="true">→</span></a>
     <small>Formulário externo via Fillout</small>
   </div>
 </section>
@@ -577,7 +623,7 @@ document.documentElement.classList.add('js');
   <div class="container footer-grid">
     <div class="footer-brand">
       
-<a class="brand" href="/" aria-label="Ascenda Logistics - Página inicial">
+<a class="brand" href="/" aria-label="ASCENDA LOGISTICS MARKETING E VENDAS">
   <img src="/assets/img/logo-mark.png" alt="" width="42" height="42" class="brand__mark">
   <span class="brand__text">
     <strong>ASCENDA LOGISTICS</strong>
@@ -602,7 +648,7 @@ document.documentElement.classList.add('js');
     </div>
     <div>
       <h3>Contato</h3>
-      <a href="https://wa.me/5519978112013" target="_blank" rel="noopener">WhatsApp (19) 97811-2013</a>
+      <a href="https://wa.me/5519978112013?text=Ol%C3%A1%2C%20conheci%20o%20Ascenda%20pelo%20site%20e%20gostaria%20de%20entender%20como%20posso%20conseguir%20novos%20embarcadores%20para%20minha%20transportadora." target="_blank" rel="noopener">WhatsApp (19) 97811-2013</a>
       <a href="mailto:comercial@ascendalogistics.com.br">comercial@ascendalogistics.com.br</a>
       <a href="/politica-de-privacidade/">Privacidade</a>
       <a href="/termos/">Termos</a>
@@ -614,11 +660,13 @@ document.documentElement.classList.add('js');
   </div>
 </footer>
 <a class="whatsapp-float" href="https://wa.me/5519978112013?text=Ol%C3%A1%2C%20conheci%20o%20Ascenda%20pelo%20site%20e%20gostaria%20de%20entender%20como%20posso%20conseguir%20novos%20embarcadores%20para%20minha%20transportadora." target="_blank" rel="noopener" aria-label="Falar com o Ascenda no WhatsApp">
-  <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M19.11 17.21c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.27-.47-2.42-1.49-.89-.8-1.5-1.78-1.67-2.08-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.49s1.07 2.89 1.22 3.09c.15.2 2.11 3.22 5.11 4.52.71.31 1.27.49 1.7.63.71.23 1.36.19 1.87.12.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35z"/><path fill="currentColor" d="M26.67 5.28A14.83 14.83 0 0 0 15.99.84C7.72.84.99 7.57.99 15.84c0 2.64.69 5.22 2 7.5L.86 31.16l8-2.1a14.96 14.96 0 0 0 7.12 1.81h.01c8.27 0 15-6.73 15-15a14.9 14.9 0 0 0-4.32-10.59zm-10.68 23.06h-.01a12.44 12.44 0 0 1-6.34-1.74l-.46-.27-4.75 1.25 1.27-4.63-.3-.48a12.43 12.43 0 1 1 10.59 5.87z"/></svg>
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35Zm-5.42 7.4a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26A9.9 9.9 0 0 1 12.06 2a9.88 9.88 0 0 1 9.89 9.89 9.9 9.9 0 0 1-9.9 9.89Zm8.41-18.3A11.82 11.82 0 0 0 12.05 0 11.91 11.91 0 0 0 .16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45c6.55 0 11.89-5.34 11.89-11.9 0-3.18-1.23-6.16-3.48-8.41Z"/></svg>
   <span>Fale com o Ascenda</span>
 </a>
 
 <script src="/assets/js/config.js"></script>
 <script src="/assets/js/observability.js" defer></script>
 <script src="/assets/js/main.js" defer></script>
+<script src="/assets/js/crm-showcase.js?v=20260906-1" defer></script>
+<script src="/assets/js/operations-showcase.js?v=20260906-1" defer></script>
 </body></html>

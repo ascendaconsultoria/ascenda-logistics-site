@@ -1,0 +1,44 @@
+{
+  "siteUrl": "https://ascendalogistics.com.br",
+  "language": "pt-BR",
+  "locale": "pt_BR",
+  "trailingSlash": true,
+  "defaultSocialImage": "/assets/img/og-image.png",
+  "indexablePages": [
+    {
+      "path": "/",
+      "file": "index.html",
+      "schemaType": "WebPage"
+    },
+    {
+      "path": "/captacao-de-embarcadores/",
+      "file": "captacao-de-embarcadores/index.html",
+      "schemaType": "WebPage"
+    },
+    {
+      "path": "/marketing-para-transportadoras/",
+      "file": "marketing-para-transportadoras/index.html",
+      "schemaType": "WebPage"
+    },
+    {
+      "path": "/perfil-logistico/",
+      "file": "perfil-logistico/index.html",
+      "schemaType": "WebPage"
+    },
+    {
+      "path": "/sobre/",
+      "file": "sobre/index.html",
+      "schemaType": "AboutPage"
+    },
+    {
+      "path": "/politica-de-privacidade/",
+      "file": "politica-de-privacidade/index.html",
+      "schemaType": "WebPage"
+    },
+    {
+      "path": "/termos/",
+      "file": "termos/index.html",
+      "schemaType": "WebPage"
+    }
+  ]
+}

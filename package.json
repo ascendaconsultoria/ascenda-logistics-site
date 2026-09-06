@@ -5,6 +5,10 @@
   "scripts": {
     "serve": "http-server . -p 8080 -c-1",
     "lint": "biome check assets/js",
+    "typecheck": "node --check assets/js/config.js && node --check assets/js/main.js && node --check assets/js/observability.js && node --check assets/js/crm-showcase.js && node --check assets/js/operations-showcase.js",
+    "seo:audit": "node scripts/seo-audit.mjs",
+    "optimize:images": "node scripts/optimize-images.mjs",
+    "build": "npm run lint && npm run typecheck && npm run seo:audit && node scripts/build.mjs",
     "format": "biome format --write assets/js",
     "test:e2e": "playwright test",
     "lighthouse": "lhci autorun"

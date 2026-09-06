@@ -1,7 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /docs/
-Disallow: /tests/
-Disallow: /.github/
 
 Sitemap: https://ascendalogistics.com.br/sitemap.xml
