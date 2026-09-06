@@ -1,4 +1,4 @@
-# Ascenda Logistics — Site institucional
+# Ascenda Logistics: Site institucional
 
 Site institucional e de aquisição comercial do Ascenda Logistics.
 
@@ -17,21 +17,23 @@ npm run serve
 ```
 
 ## Formulário
-Os CTAs principais da página inicial usam um único destino externo.
-Informe a URL publicada do Fillout em `FORM_URL`, no arquivo `assets/js/config.js`.
-Enquanto a URL não estiver preenchida, os botões levam à chamada final da própria página.
+Todos os CTAs comerciais usam o Fillout configurado em `FORM_URL`, no arquivo `assets/js/config.js`. O mesmo destino é aplicado à página inicial e às páginas internas, enquanto links de navegação continuam levando às respectivas seções.
+
+## Escala e conversão
+O desktop usa dimensões, tipografia e espaçamentos adaptados por componente para uma composição equivalente a 90%, sem aplicar `zoom` ou transformação no documento. A página inicial mantém os cards de resultados e operações mais altos, centraliza linhas incompletas de logos e inclui CTAs contextuais, WhatsApp circular e links sociais no rodapé. Os CTAs seguem um padrão pill com seta integrada e movimento discreto; o WhatsApp usa pulso leve, com as animações desativadas quando o visitante prefere movimento reduzido.
 
 ## SEO
 Inclui:
-- sitemap.xml
-- robots.txt
-- llms.txt
-- canonical e hreflang
-- Open Graph / Twitter Cards
-- Organization / WebSite / Service JSON-LD
-- páginas de apoio para cluster semântico
-- URLs crawlable e navegação interna
-- performance sem frameworks pesados
+- domínio e rotas indexáveis centralizados em `site.config.json`;
+- `sitemap.xml`, `robots.txt` e `llms.txt` sincronizados;
+- canonical, hreflang, Open Graph e Twitter Cards;
+- `Organization`, `WebSite`, `WebPage`, `Service` e `BreadcrumbList` em JSON-LD;
+- URLs crawlable, barra final consistente e navegação interna;
+- WebP com PNG de fallback para os ativos pesados e vídeo da hero sem faixa de áudio;
+- headers de segurança e cache em `vercel.json`;
+- auditoria automatizada com `npm run seo:audit`.
+
+Os detalhes técnicos e o checklist pós-domínio estão em `docs/SEO.md`.
 
 **Importante:** nenhuma implementação técnica garante primeiro lugar no Google. Ranking depende também de conteúdo contínuo, autoridade, backlinks, Google Business Profile, concorrência, histórico e sinais de usuário.
 
@@ -39,14 +41,19 @@ Inclui:
 Leia `AGENTS.md`, `PROJECT.md` e `docs/`.
 
 ## Redes de captação
-A seção da página inicial usa a arte aprovada do projeto v0, armazenada localmente em `assets/img/redes-captacao-v0.png` para não depender de hospedagem externa. A renderização equilibra a altura disponível com uma largura mínima proporcional ao viewport, evitando que a composição fique pequena em telas desktop mais baixas.
+A seção da página inicial usa a arte aprovada armazenada localmente, sem depender de hospedagem externa. A renderização equilibra a altura disponível com uma largura mínima proporcional ao viewport, evitando que a composição fique pequena em telas desktop mais baixas. O navegador recebe WebP quando compatível e mantém PNG como fallback.
 
 ## A diferença começa aqui
 A seção apresenta em HTML e SVG as cinco etapas Operação, Perfil, Filtro, Match e Oportunidade, preservando a composição visual de referência e a legibilidade responsiva.
 
 ## O que chega ao comercial
-A seção `#dados` demonstra Leads, Kanban, Funil comercial e Insights em HTML/CSS/SVG nítidos, usando apenas dados fictícios definidos em `assets/js/crm-showcase.js`. As referências originais com dados reais não fazem parte dos assets do site. Empresas, contatos e indicadores podem ser editados no arquivo da demonstração; os estilos estão isolados em `assets/css/crm-showcase.css`.
+A seção `#dados` demonstra Leads, Kanban, Funil comercial e Insights em HTML/CSS/SVG nítidos, usando dados simulados definidos em `assets/js/crm-showcase.js`. As referências originais com dados reais não fazem parte dos assets do site. Empresas, contatos e indicadores podem ser editados no arquivo da demonstração; os estilos estão isolados em `assets/css/crm-showcase.css`.
 
-O carrossel alterna a cada 8 segundos quando visível, pausa durante leitura com mouse ou teclado e permite navegação manual. A navegação manual pausa a reprodução. Com movimento reduzido, inicia pausado. Em telas pequenas, tabelas e colunas têm rolagem interna.
+O carrossel alterna automaticamente a cada 5 segundos enquanto está visível e retorna ao primeiro mockup em loop. As bolinhas abaixo indicam a tela atual e permitem selecionar outra sem interromper a reprodução; o botão de pausa fica disponível para teclado. Os mockups são quadros estáticos, sem rolagem ou interação interna.
 
-Execute `npm run lint` e `npm run test:e2e`. Os testes usam um servidor isolado na porta 8093 para não validar outro projeto que esteja aberto na porta 8080. Não há etapa de build nem typecheck: o site usa arquivos estáticos e JavaScript. As capturas do carrossel e dos mockups em escala 2× são geradas em `test-results/`.
+## Resultados
+A seção `#resultados` apresenta os cases da TPL Logística e da Solução Locação e Transportes, com indicadores agregados de perfil, links oficiais do Instagram e uma vitrine compacta de empresas atendidas. Os logos ficam armazenados localmente em `assets/img/clientes/` e os estilos da seção estão isolados em `assets/css/results-showcase.css`. Os cards exibem recortes de campanha informados pelo projeto, incluindo decisores, região e tipo de operação.
+
+Os resultados exibidos são históricos de operações específicas e não representam garantia de contatos, reuniões ou contratos.
+
+Execute `npm run build` e `npm run test:e2e`. O build executa lint, verificação sintática e auditoria SEO antes de gerar o pacote estático de publicação em `dist/`. Os testes usam um servidor isolado na porta 8093 para não validar outro projeto que esteja aberto na porta 8080. As capturas do carrossel e dos mockups em escala 2× são geradas em `test-results/`.

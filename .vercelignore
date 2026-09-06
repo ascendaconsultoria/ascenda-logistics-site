@@ -1,0 +1,17 @@
+.git
+.github
+.vercel
+node_modules
+test-results
+playwright-report
+tests
+docs
+*.md
+CHANGELOG.md
+CONTRIBUTING.md
+PROJECT.md
+assets/img/redes-captacao-v0.png
+assets/img/difference-logistics-diorama.png
+assets/img/clientes/cliente-b.png
+assets/img/hero-truck.mp4
+dist
