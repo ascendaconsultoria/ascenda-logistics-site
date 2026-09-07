@@ -31,10 +31,10 @@
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/img/hero-truck-poster.webp" as="image" type="image/webp" fetchpriority="high">
-  <link rel="stylesheet" href="/assets/css/styles.css?v=20260906-8">
-<link rel="stylesheet" href="/assets/css/crm-showcase.css?v=20260906-3">
-  <link rel="stylesheet" href="/assets/css/operations-showcase.css?v=20260906-2">
-<link rel="stylesheet" href="/assets/css/results-showcase.css?v=20260906-8">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20260907-1">
+<link rel="stylesheet" href="/assets/css/crm-showcase.css?v=20260907-1">
+  <link rel="stylesheet" href="/assets/css/operations-showcase.css?v=20260907-1">
+<link rel="stylesheet" href="/assets/css/results-showcase.css?v=20260907-1">
 <script>
 document.documentElement.classList.add('js');
 </script>
@@ -314,7 +314,8 @@ document.documentElement.classList.add('js');
       <a class="btn btn--primary fit-section__cta" href="https://forms.fillout.com/t/a1tgNciQp6us" data-form-link target="_blank" rel="noopener">Falar com um especialista <span aria-hidden="true">→</span></a>
     </header>
 
-    <div class="fit-section__flow" aria-label="Fluxo de definição da oportunidade ideal">
+    <div class="fit-section__flow-wrap">
+      <div class="fit-section__flow" id="fit-section-flow" data-fit-flow aria-label="Fluxo de definição da oportunidade ideal">
       <article class="fit-step" data-fit-step>
         <span class="fit-step__icon" aria-hidden="true"><img src="/assets/img/difference-icons/operacao.png" srcset="/assets/img/difference-icons/operacao.webp" alt="" width="1254" height="1254" loading="lazy" decoding="async"></span>
         <strong>Operação</strong>
@@ -344,6 +345,8 @@ document.documentElement.classList.add('js');
         <strong>Oportunidade</strong>
         <p>Apresentamos apenas<br>oportunidades que<br>possuem valor real.</p>
       </article>
+      </div>
+      <button class="fit-section__next" type="button" data-fit-next aria-controls="fit-section-flow" aria-label="Ver próximo card"><span aria-hidden="true">→</span></button>
     </div>
   </div>
 </section>
@@ -539,6 +542,7 @@ document.documentElement.classList.add('js');
         <article class="operations-showcase__card" style="--ops-image:url('/assets/img/operations/armazenagem-distribuicao.webp');--ops-image-fallback:url('/assets/img/operations/armazenagem-distribuicao.png')"><div class="operations-showcase__card-content"><h3>Armazenagem e distribuição</h3><p>Operações combinadas conforme capacidade, giro e cobertura regional.</p></div></article>
       </div></div>
     </div>
+    <div class="operations-showcase__group-label"><span>ESPECIAIS</span></div>
     <div class="operations-showcase__row" data-ops-row="specialties" data-ops-direction="ltr" aria-label="Especialidades operacionais">
       <div class="operations-showcase__viewport"><div class="operations-showcase__track" data-ops-track>
         <article class="operations-showcase__card" style="--ops-image:url('/assets/img/operations/refrigerado-congelado.webp');--ops-image-fallback:url('/assets/img/operations/refrigerado-congelado.png')"><div class="operations-showcase__card-content"><h3>Refrigerado e congelado</h3><p>Alimentos, bebidas e produtos que exigem controle de temperatura.</p></div></article>
@@ -563,8 +567,8 @@ document.documentElement.classList.add('js');
       </header>
 
       <div class="results-showcase__cases">
-        <article class="result-case reveal">
-          <div class="result-case__brand"><img src="/assets/img/clientes/tpl-logistica-case.png" srcset="/assets/img/clientes/tpl-logistica-case.webp" alt="TPL Logística" width="2000" height="2000" loading="lazy" decoding="async"></div>
+        <article class="result-case result-case--tpl reveal">
+          <div class="result-case__brand"><img src="/assets/img/clientes/tpl-logistica.png" srcset="/assets/img/clientes/tpl-logistica.webp" alt="TPL Logística" width="2172" height="724" loading="lazy" decoding="async"></div>
           <div class="result-case__divider" aria-hidden="true"></div>
           <div class="result-case__result">
             <div class="result-case__headline result-case__number"><strong>115</strong><span>contatos<br><b>em 2 meses</b></span></div>
@@ -695,7 +699,7 @@ document.documentElement.classList.add('js');
 
 <script src="/assets/js/config.js"></script>
 <script src="/assets/js/observability.js" defer></script>
-<script src="/assets/js/main.js?v=20260906-2" defer></script>
-<script src="/assets/js/crm-showcase.js?v=20260906-2" defer></script>
-<script src="/assets/js/operations-showcase.js?v=20260906-2" defer></script>
+<script src="/assets/js/main.js?v=20260907-1" defer></script>
+<script src="/assets/js/crm-showcase.js?v=20260907-1" defer></script>
+<script src="/assets/js/operations-showcase.js?v=20260907-1" defer></script>
 </body></html>

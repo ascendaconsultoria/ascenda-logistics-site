@@ -161,7 +161,33 @@
 
     const visual = $(".difference-visual", section);
     const criteria = $$("[data-criterion]", section);
+    const flow = $("[data-fit-flow]", section);
+    const nextButton = $("[data-fit-next]", section);
     section.classList.add("is-enhanced");
+
+    if (flow && nextButton) {
+      const syncNextButton = () => {
+        const isScrollable = flow.scrollWidth > flow.clientWidth + 4;
+        const isAtEnd =
+          flow.scrollLeft + flow.clientWidth >= flow.scrollWidth - 4;
+        nextButton.hidden = !isScrollable || isAtEnd;
+      };
+
+      nextButton.addEventListener("click", () => {
+        const firstStep = $("[data-fit-step]", flow);
+        const gap = Number.parseFloat(getComputedStyle(flow).columnGap) || 0;
+        const distance = firstStep
+          ? firstStep.getBoundingClientRect().width + gap
+          : flow.clientWidth * 0.85;
+        flow.scrollBy({
+          left: distance,
+          behavior: reducedMotion ? "auto" : "smooth",
+        });
+      });
+      flow.addEventListener("scroll", syncNextButton, { passive: true });
+      addEventListener("resize", syncNextButton);
+      requestAnimationFrame(syncNextButton);
+    }
 
     const revealFlow = () => section.classList.add("is-active");
     if (reducedMotion || !("IntersectionObserver" in window)) {

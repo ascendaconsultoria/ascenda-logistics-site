@@ -63,6 +63,18 @@ test("seção de diferença preserva as cinco etapas, ícones e responsividade",
   await expect(section).toHaveClass(/is-active/);
 
   await page.setViewportSize({ width: 390, height: 844 });
+  const flow = section.locator("[data-fit-flow]");
+  const nextButton = section.getByRole("button", { name: "Ver próximo card" });
+  await expect(nextButton).toBeVisible();
+  const initialScroll = await flow.evaluate((element) => element.scrollLeft);
+  await nextButton.click();
+  await expect
+    .poll(() => flow.evaluate((element) => element.scrollLeft))
+    .toBeGreaterThan(initialScroll);
+  await flow.evaluate((element) => {
+    element.scrollLeft = element.scrollWidth;
+  });
+  await expect(nextButton).toBeHidden();
   await expect
     .poll(() =>
       page.evaluate(
@@ -308,9 +320,12 @@ test("operações mostra os dois trilhos e cabe horizontalmente no viewport", as
 
   const section = page.locator("#operacoes");
   const cards = section.locator(".operations-showcase__card");
+  const specialtyLabel = section.locator(".operations-showcase__group-label");
   await expect(section.getByRole("heading", { level: 2 })).toHaveText(
     "Conheça as operações em que podemos ajudar sua transportadora a captar novos embarcadores.",
   );
+  await expect(specialtyLabel).toHaveText("ESPECIAIS");
+  await expect(specialtyLabel).toBeVisible();
   await expect(cards).toHaveCount(36);
   await expect(cards.nth(0).getByRole("heading", { level: 3 })).toHaveText(
     "Carga fechada",
@@ -400,9 +415,12 @@ test("operações vira uma galeria de toque legível no mobile", async ({
   const rows = section.locator("[data-ops-row]");
   const cards = section.locator(".operations-showcase__card");
   const firstViewport = section.locator(".operations-showcase__viewport").first();
+  const specialtyLabel = section.locator(".operations-showcase__group-label");
 
   await expect(rows).toHaveCount(2);
   await expect(cards).toHaveCount(12);
+  await expect(specialtyLabel).toHaveText("ESPECIAIS");
+  await expect(specialtyLabel).toBeVisible();
   await expect(rows.first()).toHaveAttribute("data-ops-mode", "scroll");
   await expect(rows.last()).toHaveAttribute("data-ops-mode", "scroll");
   await expect(section.locator("[data-ops-track]").first()).toHaveCSS(
@@ -490,14 +508,21 @@ test("menu mobile abre sem bloquear a navegação e fecha após a escolha", asyn
   await expect(page.locator("#operacoes")).toBeInViewport();
 });
 
-test("CRM apresenta leads em cartões legíveis no mobile", async ({ page }) => {
+test("CRM apresenta somente novos leads no Kanban mobile", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/#dados");
 
-  const screen = page.locator("#crm-screen-leads");
+  const screen = page.locator("#crm-screen-kanban");
   await expect(screen).toBeVisible();
-  await expect(screen.locator(".crm-demo__mobile-leads article")).toHaveCount(6);
-  await expect(screen.locator(".crm-demo__table-scroll")).toBeHidden();
+  await expect(
+    screen.locator(".crm-demo__mobile-kanban .crm-demo__column"),
+  ).toHaveCount(1);
+  await expect(
+    screen.locator(".crm-demo__mobile-kanban .crm-demo__lead"),
+  ).toHaveCount(2);
+  await expect(screen.locator(".crm-demo__mobile-kanban")).not.toContainText(
+    "Perfil compatível",
+  );
   await expect(screen).toHaveCSS("transform", "none");
 });
 
@@ -542,6 +567,18 @@ test("resultados apresenta cases reais, perfis e prova social sem overflow", asy
   await expect(
     cases.nth(0).locator(".result-case__headline strong"),
   ).toHaveText("115");
+  await expect(cases.nth(0).locator(".result-case__brand img")).toHaveAttribute(
+    "src",
+    "/assets/img/clientes/tpl-logistica.png",
+  );
+  await expect
+    .poll(() =>
+      cases.nth(0).locator(".result-case__brand img").evaluate((image) => ({
+        width: image.naturalWidth,
+        height: image.naturalHeight,
+      })),
+    )
+    .toEqual({ width: 2172, height: 724 });
   await expect(
     cases.nth(1).locator(".result-case__headline strong"),
   ).toHaveText("18");

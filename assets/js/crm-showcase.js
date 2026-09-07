@@ -117,6 +117,8 @@
       "Realizar reunião",
       "Acompanhar proposta",
     ];
+    const kanbanLead = (lead, stageIndex, showAdherence = true) =>
+      `<article class="crm-demo__lead"><h4>${lead.company}</h4><p>${lead.person} · ${lead.role}</p><dl><div><dt>${icon("route")}Rota</dt><dd>${lead.route}</dd></div><div><dt>${icon("truck")}Operação</dt><dd>${lead.operation}</dd></div><div><dt>${icon("chart")}Volume</dt><dd>${lead.volume}</dd></div></dl>${showAdherence ? `<div class="crm-demo__lead-bottom"><span class="crm-demo__score">${lead.score}</span><span>Aderência<small>Perfil compatível</small></span></div>` : ""}<div class="crm-demo__next-step"><small>Próximo passo</small>${nextSteps[stageIndex]}</div></article>`;
     const kanbanScreen = `<div class="crm-demo__screen-heading"><div><h3>Cada oportunidade, no próximo passo</h3><p>Da entrada do lead à negociação, com contexto.</p></div></div>
     <div class="crm-demo__board" aria-label="Kanban demonstrativo">${stages
       .map(
@@ -124,13 +126,15 @@
           `<div class="crm-demo__column" data-stage="${index}"><div class="crm-demo__column-title"><span>${stage}</span><b>${Math.min(1, leads.filter((lead) => lead.stage === index).length)}</b></div>${leads
             .filter((lead) => lead.stage === index)
             .slice(0, 1)
-            .map(
-              (lead) =>
-                `<article class="crm-demo__lead"><h4>${lead.company}</h4><p>${lead.person} · ${lead.role}</p><dl><div><dt>${icon("route")}Rota</dt><dd>${lead.route}</dd></div><div><dt>${icon("truck")}Operação</dt><dd>${lead.operation}</dd></div><div><dt>${icon("chart")}Volume</dt><dd>${lead.volume}</dd></div></dl><div class="crm-demo__lead-bottom"><span class="crm-demo__score">${lead.score}</span><span>Aderência<small>Perfil compatível</small></span></div><div class="crm-demo__next-step"><small>Próximo passo</small>${nextSteps[index]}</div></article>`,
-            )
+            .map((lead) => kanbanLead(lead, index))
             .join("")}</div>`,
       )
-      .join("")}</div>`;
+      .join("")}</div>
+    <div class="crm-demo__mobile-kanban" aria-label="Kanban mobile com novos leads"><div class="crm-demo__column" data-stage="0"><div class="crm-demo__column-title"><span>Novo lead</span><b>2</b></div>${leads
+      .filter((lead) => lead.stage === 0)
+      .slice(0, 2)
+      .map((lead) => kanbanLead(lead, 0, false))
+      .join("")}</div></div>`;
     const funnelStages = [...stages, "Ganho"];
     const counts = [48, 36, 24, 12, 8, 4];
     const funnelScreen = `<div class="crm-demo__screen-heading"><div><h3>Funil comercial</h3><p>Avanço acumulado das oportunidades em cada etapa.</p></div></div><div class="crm-demo__funnel-layout"><svg class="crm-demo__funnel" viewBox="0 0 380 310" role="img" aria-label="Funil com 48 leads recebidos e 4 ganhos">${counts
@@ -249,7 +253,10 @@
     });
     document.addEventListener("visibilitychange", syncPlayback);
     motion.addEventListener("change", syncPlayback);
-    mobileLayout.addEventListener("change", syncPlayback);
+    mobileLayout.addEventListener("change", () => {
+      if (mobileLayout.matches) show(1);
+      else syncPlayback();
+    });
     if ("IntersectionObserver" in window) {
       new IntersectionObserver(
         ([entry]) => {
@@ -263,7 +270,8 @@
     }
     carousel.querySelector(".crm-showcase__navigation").hidden = false;
     document.querySelector("[data-crm-dots]").hidden = false;
-    syncPlayback();
+    if (mobileLayout.matches) show(1);
+    else syncPlayback();
   };
 
   if (location.hash === "#dados") {
