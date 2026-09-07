@@ -1,6 +1,22 @@
 const { test, expect } = require("@playwright/test");
 
 const siteUrl = "https://ascendalogistics.com.br";
+
+test("home prioriza Marketing para Transportadoras no título", async ({ page }) => {
+  await page.goto("/");
+  await expect(page).toHaveTitle(
+    "Marketing para Transportadoras | Ascenda Logistics",
+  );
+  await expect(page.locator('meta[property="og:title"]')).toHaveAttribute(
+    "content",
+    "Marketing para Transportadoras | Ascenda Logistics",
+  );
+  await expect(page.locator('meta[name="twitter:title"]')).toHaveAttribute(
+    "content",
+    "Marketing para Transportadoras | Ascenda Logistics",
+  );
+});
+
 const routes = [
   "/",
   "/captacao-de-embarcadores/",

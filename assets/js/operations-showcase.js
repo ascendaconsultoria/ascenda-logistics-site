@@ -75,7 +75,17 @@
 
   const visibleCards = () => (innerWidth < 620 ? 1 : innerWidth < 980 ? 2 : 3);
   const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
-  const usesTouchLayout = () => innerWidth <= 620 || reducedMotion.matches;
+  const usesTouchLayout = () => innerWidth <= 620;
+
+  const syncNextButton = (row) => {
+    const viewport = row.querySelector(".operations-showcase__viewport");
+    const nextButton = row.querySelector("[data-ops-next]");
+    if (!viewport || !nextButton) return;
+    const isScrollable = viewport.scrollWidth > viewport.clientWidth + 4;
+    const isAtEnd =
+      viewport.scrollLeft + viewport.clientWidth >= viewport.scrollWidth - 4;
+    nextButton.hidden = !usesTouchLayout() || !isScrollable || isAtEnd;
+  };
 
   const renderRow = (row, items) => {
     const visible = visibleCards();
@@ -93,6 +103,7 @@
       track.style.removeProperty("--ops-loop-to");
       track.style.setProperty("--ops-card-width", `${cardWidth}px`);
       viewport.scrollLeft = 0;
+      requestAnimationFrame(() => syncNextButton(row));
       return;
     }
     row.dataset.opsMode = "loop";
@@ -108,6 +119,7 @@
     );
     void track.offsetWidth;
     row.dataset.opsMode = "loop";
+    syncNextButton(row);
   };
 
   const render = () => {
@@ -121,6 +133,26 @@
   const initialize = () => {
     if (initialized) return;
     initialized = true;
+    rows.forEach((row) => {
+      const viewport = row.querySelector(".operations-showcase__viewport");
+      const track = row.querySelector("[data-ops-track]");
+      const nextButton = row.querySelector("[data-ops-next]");
+      if (!viewport || !track || !nextButton) return;
+      nextButton.addEventListener("click", () => {
+        const firstCard = row.querySelector(".operations-showcase__card");
+        const gap = Number.parseFloat(getComputedStyle(track).columnGap) || 0;
+        const distance = firstCard
+          ? firstCard.getBoundingClientRect().width + gap
+          : viewport.clientWidth;
+        viewport.scrollBy({
+          left: distance,
+          behavior: reducedMotion.matches ? "auto" : "smooth",
+        });
+      });
+      viewport.addEventListener("scroll", () => syncNextButton(row), {
+        passive: true,
+      });
+    });
     render();
     addEventListener(
       "resize",

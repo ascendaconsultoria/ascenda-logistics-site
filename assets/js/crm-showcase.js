@@ -200,20 +200,13 @@
     new ResizeObserver(resize).observe(stage);
     mobileLayout.addEventListener("change", resize);
 
-    const motion = matchMedia("(prefers-reduced-motion: reduce)");
     let index = 0;
     let paused = false;
     let inView = true;
     let timer;
     const syncPlayback = () => {
       clearInterval(timer);
-      if (
-        !paused &&
-        inView &&
-        !document.hidden &&
-        !motion.matches &&
-        !mobileLayout.matches
-      ) {
+      if (!paused && inView && !document.hidden && !mobileLayout.matches) {
         timer = setInterval(() => show(index + 1), 5000);
       }
       pauseButton.textContent = paused ? "Reproduzir" : "Pausar";
@@ -252,7 +245,6 @@
       syncPlayback();
     });
     document.addEventListener("visibilitychange", syncPlayback);
-    motion.addEventListener("change", syncPlayback);
     mobileLayout.addEventListener("change", () => {
       if (mobileLayout.matches) show(1);
       else syncPlayback();
@@ -263,7 +255,7 @@
           inView = entry.isIntersecting;
           syncPlayback();
         },
-        { threshold: 0.2 },
+        { rootMargin: "80px 0px", threshold: 0.01 },
       ).observe(carousel);
     } else {
       inView = true;
