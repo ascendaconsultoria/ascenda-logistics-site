@@ -16,6 +16,33 @@ test("demonstração navega pelas quatro telas sem rolagem interna", async ({
   const screenshots = ["leads", "kanban", "funil", "insights"];
 
   await expect(dots).toHaveCount(4);
+  if (testInfo.project.name === "mobile") {
+    const mobileKanban = carousel.locator(".crm-demo__mobile-kanban");
+    await expect(carousel.locator(".crm-showcase__navigation")).toBeHidden();
+    await expect(dots.first()).toBeHidden();
+    await expect(carousel.locator("#crm-screen-kanban")).toBeVisible();
+    await expect(carousel.locator(".crm-demo__board")).toBeHidden();
+    await expect(mobileKanban).toBeVisible();
+    await expect(mobileKanban.locator(".crm-demo__column")).toHaveCount(1);
+    await expect(mobileKanban.locator(".crm-demo__lead")).toHaveCount(2);
+    await expect(mobileKanban.locator(".crm-demo__lead-bottom")).toHaveCount(0);
+    await expect(mobileKanban).not.toContainText("Aderência");
+    await expect(mobileKanban).not.toContainText("Perfil compatível");
+    await expect
+      .poll(() =>
+        carousel.evaluate((element) => {
+          const panel = element.querySelector(".crm-demo:not([hidden])");
+          return {
+            overflow: document.documentElement.scrollWidth > innerWidth,
+            panelOverflow: panel.scrollHeight > panel.clientHeight + 1,
+          };
+        }),
+      )
+      .toEqual({ overflow: false, panelOverflow: false });
+    await page.screenshot({ path: testInfo.outputPath("kanban-mobile.png") });
+    return;
+  }
+
   for (let index = 0; index < 4; index += 1) {
     await dots.nth(index).click();
     await expect(carousel.locator(".crm-demo:visible")).toHaveCount(1);
@@ -65,12 +92,27 @@ test("alternância automática permanece no desktop e é desativada no mobile", 
   await page.locator("[data-crm-carousel]").scrollIntoViewIfNeeded();
   await page.mouse.move(0, 0);
   await page.clock.runFor(8_500);
-  await expect(page.locator(`[data-crm-dot="${testInfo.project.name === "desktop" ? 1 : 0}"]`)).toHaveAttribute("aria-pressed", "true");
+  await expect(page.locator('[data-crm-dot="1"]')).toHaveAttribute(
+    "aria-pressed",
+    "true",
+  );
+  if (testInfo.project.name === "mobile") {
+    await expect(page.locator("#crm-screen-kanban")).toBeVisible();
+    await page.clock.runFor(8_500);
+    await expect(page.locator('[data-crm-dot="1"]')).toHaveAttribute(
+      "aria-pressed",
+      "true",
+    );
+    return;
+  }
   await page.locator('[data-crm-dot="3"]').click();
   await expect(page.locator('[data-crm-dot="3"]')).toHaveAttribute(
     "aria-pressed",
     "true",
   );
   await page.clock.runFor(8_500);
-  await expect(page.locator(`[data-crm-dot="${testInfo.project.name === "desktop" ? 0 : 3}"]`)).toHaveAttribute("aria-pressed", "true");
+  await expect(page.locator('[data-crm-dot="0"]')).toHaveAttribute(
+    "aria-pressed",
+    "true",
+  );
 });

@@ -134,6 +134,7 @@
   object-position: center;
 }
 
+.result-case--tpl .result-case__brand img,
 .result-case--solution .result-case__brand img {
   object-fit: contain;
   transform: scale(1.08);

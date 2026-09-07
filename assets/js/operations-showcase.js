@@ -83,9 +83,7 @@
     const markup = items.map((item) => card(item)).join("");
     const track = row.querySelector("[data-ops-track]");
     const viewport = row.querySelector(".operations-showcase__viewport");
-    track.style.animation = "none";
-    track.style.animationDelay = "0ms";
-    track.dataset.opsDelay = "0";
+    delete row.dataset.opsMode;
     track.innerHTML = usesTouchLayout() ? markup : markup.repeat(3);
     const gap = Number.parseFloat(getComputedStyle(track).columnGap) || 0;
     const cardWidth = (viewport.clientWidth - gap * (visible - 1)) / visible;
@@ -108,8 +106,8 @@
       "--ops-loop-to",
       `${direction === "rtl" ? -loopDistance * 2 : -loopDistance}px`,
     );
-    track.offsetWidth;
-    track.style.animation = "";
+    void track.offsetWidth;
+    row.dataset.opsMode = "loop";
   };
 
   const render = () => {
