@@ -87,32 +87,48 @@ test("demonstração navega pelas quatro telas sem rolagem interna", async ({
 test("alternância automática permanece no desktop e é desativada no mobile", async ({
   page,
 }, testInfo) => {
-  await page.clock.install();
   await page.goto("/#dados");
   await page.locator("[data-crm-carousel]").scrollIntoViewIfNeeded();
   await page.mouse.move(0, 0);
-  await page.clock.runFor(8_500);
-  await expect(page.locator('[data-crm-dot="1"]')).toHaveAttribute(
-    "aria-pressed",
-    "true",
-  );
   if (testInfo.project.name === "mobile") {
     await expect(page.locator("#crm-screen-kanban")).toBeVisible();
-    await page.clock.runFor(8_500);
+    await page.waitForTimeout(5_500);
     await expect(page.locator('[data-crm-dot="1"]')).toHaveAttribute(
       "aria-pressed",
       "true",
     );
     return;
   }
+  await expect
+    .poll(
+      () => page.locator('[data-crm-dot="1"]').getAttribute("aria-pressed"),
+      { timeout: 7_000 },
+    )
+    .toBe("true");
   await page.locator('[data-crm-dot="3"]').click();
   await expect(page.locator('[data-crm-dot="3"]')).toHaveAttribute(
     "aria-pressed",
     "true",
   );
-  await page.clock.runFor(8_500);
-  await expect(page.locator('[data-crm-dot="0"]')).toHaveAttribute(
-    "aria-pressed",
-    "true",
-  );
+  await expect
+    .poll(
+      () => page.locator('[data-crm-dot="0"]').getAttribute("aria-pressed"),
+      { timeout: 7_000 },
+    )
+    .toBe("true");
+});
+
+test("alternância automática continua com movimento reduzido no desktop", async ({
+  page,
+}, testInfo) => {
+  test.skip(testInfo.project.name !== "desktop");
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/#dados");
+  await page.locator("[data-crm-carousel]").scrollIntoViewIfNeeded();
+  await expect
+    .poll(
+      () => page.locator('[data-crm-dot="1"]').getAttribute("aria-pressed"),
+      { timeout: 7_000 },
+    )
+    .toBe("true");
 });

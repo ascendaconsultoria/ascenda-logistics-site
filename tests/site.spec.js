@@ -415,12 +415,17 @@ test("operações vira uma galeria de toque legível no mobile", async ({
   const rows = section.locator("[data-ops-row]");
   const cards = section.locator(".operations-showcase__card");
   const firstViewport = section.locator(".operations-showcase__viewport").first();
+  const secondViewport = section.locator(".operations-showcase__viewport").last();
+  const nextButtons = section.locator("[data-ops-next]");
   const specialtyLabel = section.locator(".operations-showcase__group-label");
 
   await expect(rows).toHaveCount(2);
   await expect(cards).toHaveCount(12);
   await expect(specialtyLabel).toHaveText("ESPECIAIS");
   await expect(specialtyLabel).toBeVisible();
+  await expect(nextButtons).toHaveCount(2);
+  await expect(nextButtons.first()).toBeVisible();
+  await expect(nextButtons.last()).toBeVisible();
   await expect(rows.first()).toHaveAttribute("data-ops-mode", "scroll");
   await expect(rows.last()).toHaveAttribute("data-ops-mode", "scroll");
   await expect(section.locator("[data-ops-track]").first()).toHaveCSS(
@@ -447,6 +452,29 @@ test("operações vira uma galeria de toque legível no mobile", async ({
       ),
     )
     .toBe(true);
+  if (testInfo.project.name === "mobile") {
+    await section.screenshot({
+      path: testInfo.outputPath("operations-mobile.png"),
+    });
+  }
+  const initialScroll = await firstViewport.evaluate(
+    (viewport) => viewport.scrollLeft,
+  );
+  await nextButtons.first().click();
+  await expect
+    .poll(() => firstViewport.evaluate((viewport) => viewport.scrollLeft))
+    .toBeGreaterThan(initialScroll);
+  await firstViewport.evaluate((viewport) => {
+    viewport.scrollLeft = viewport.scrollWidth;
+  });
+  await expect(nextButtons.first()).toBeHidden();
+  const secondInitialScroll = await secondViewport.evaluate(
+    (viewport) => viewport.scrollLeft,
+  );
+  await nextButtons.last().click();
+  await expect
+    .poll(() => secondViewport.evaluate((viewport) => viewport.scrollLeft))
+    .toBeGreaterThan(secondInitialScroll);
   await expect
     .poll(() =>
       page.evaluate(
@@ -455,12 +483,6 @@ test("operações vira uma galeria de toque legível no mobile", async ({
     )
     .toBe(true);
 
-  if (testInfo.project.name === "mobile") {
-    await page.screenshot({
-      path: testInfo.outputPath("operations-mobile.png"),
-      fullPage: false,
-    });
-  }
 });
 
 test("home e páginas estratégicas não criam overflow no mobile", async ({
@@ -526,23 +548,22 @@ test("CRM apresenta somente novos leads no Kanban mobile", async ({ page }) => {
   await expect(screen).toHaveCSS("transform", "none");
 });
 
-test("operações respeita redução de movimento e mantém navegação manual", async ({
+test("operações mantém loop reduzido no desktop com preferência de movimento reduzido", async ({
   page,
-}) => {
+}, testInfo) => {
+  test.skip(testInfo.project.name !== "desktop");
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/#operacoes");
 
   const track = page.locator('[data-ops-row="primary"] [data-ops-track]');
-  const viewport = page.locator(
-    '[data-ops-row="primary"] .operations-showcase__viewport',
+  await expect(track).toHaveCSS("animation-name", "operationsShowcaseLoop");
+  await expect(track).toHaveCSS("animation-duration", "72s");
+  const before = await track.evaluate(
+    (element) => getComputedStyle(element).transform,
   );
-  await expect(track).toHaveCSS("animation-name", "none");
-  await expect(track).toHaveCSS("transform", "none");
   await expect
-    .poll(() =>
-      viewport.evaluate((element) => element.scrollWidth > element.clientWidth),
-    )
-    .toBe(true);
+    .poll(() => track.evaluate((element) => getComputedStyle(element).transform))
+    .not.toBe(before);
 });
 
 test("resultados apresenta cases reais, perfis e prova social sem overflow", async ({
