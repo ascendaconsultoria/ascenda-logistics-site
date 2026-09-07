@@ -134,6 +134,11 @@
   object-position: center;
 }
 
+.result-case--solution .result-case__brand img {
+  object-fit: contain;
+  transform: scale(1.08);
+}
+
 .result-case__divider {
   width: 1px;
   height: 98px;
@@ -425,6 +430,7 @@
   .results-showcase__logos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
   .results-showcase__logos li { height: 64px; flex-basis: calc((100% - 10px) / 2); }
   .results-showcase__logo-art { transform: scale(1.2); }
+  .results-showcase__logos li:nth-child(5) .results-showcase__logo-art { object-position: center; transform: scale(1.04); }
   .results-showcase__logos li:last-child { flex-grow: 0; }
   .results-showcase__cta { min-height: 52px; margin-top: 24px; }
 }
