@@ -3,8 +3,11 @@ const filloutUrl = "https://forms.fillout.com/t/a1tgNciQp6us";
 
 test("home carrega e CTAs comerciais abrem o Fillout", async ({ page }) => {
   await page.goto("/");
-  await expect(page.getByRole("heading", { level: 1 })).toContainText(
-    "Novos embarcadores",
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+    "Ajudamos a sua transportadora a conquistar novos embarcadores",
+  );
+  await expect(page.locator(".hero-copy > p")).toHaveText(
+    "Criamos campanhas para atrair empresas com demanda de transporte e filtramos cada oportunidade de acordo com as rotas, cargas e operação da sua transportadora.",
   );
   const heroVideo = page.locator("video.hero-video");
   await expect(heroVideo).toHaveAttribute("autoplay", "");
@@ -126,7 +129,8 @@ test("redes de captação incorpora o frame do v0 sem corte ou overflow", async 
   await page.setViewportSize({ width: 1366, height: 768 });
   await page.goto("/#redes");
   const section = page.locator("[data-capture-network]");
-  const panel = section.locator(".capture-hybrid__panel img");
+  const panel = section.locator(".capture-hybrid__desktop-image");
+  const mobilePanel = section.locator(".capture-mobile-network");
 
   await expect(section).toBeVisible();
   await expect(panel).toHaveCount(1);
@@ -148,7 +152,11 @@ test("redes de captação incorpora o frame do v0 sem corte ou overflow", async 
   await expect(section.locator(".capture-hybrid__quote")).toContainText(
     "Por trás de todo CNPJ existe uma pessoa tomando decisões.",
   );
-  await expect(section.locator("[data-capture-card]")).toHaveCount(0);
+  await expect(section.locator(".capture-hybrid__quote small")).toHaveText(
+    "Uma empresa pode estar insatisfeita com o fornecedor atual, ampliando rotas ou buscando uma nova solução. A comunicação certa transforma esse cenário em oportunidade.",
+  );
+  await expect(section.locator("[data-capture-card]")).toHaveCount(4);
+  await expect(mobilePanel).toBeHidden();
 
   await page.evaluate(() => document.querySelector("#redes").scrollIntoView());
   await expect
@@ -168,7 +176,17 @@ test("redes de captação incorpora o frame do v0 sem corte ou overflow", async 
   }
 
   await page.setViewportSize({ width: 390, height: 844 });
-  await expect(panel).toBeVisible();
+  await expect(panel).toBeHidden();
+  await expect(mobilePanel).toBeVisible();
+  await expect(mobilePanel.locator("[data-capture-card]")).toHaveCount(4);
+  await expect(mobilePanel.getByText("Meta", { exact: true })).toBeVisible();
+  await expect(mobilePanel.getByText("Google", { exact: true })).toBeVisible();
+  await expect(
+    mobilePanel.getByText("Site + presença", { exact: true }),
+  ).toBeVisible();
+  await expect(
+    mobilePanel.getByText("Telefone + WhatsApp", { exact: true }),
+  ).toBeVisible();
   await expect
     .poll(() =>
       page.evaluate(
@@ -190,9 +208,24 @@ test("perfil logístico mantém movimento suave em todos os navegadores", async 
   await expect(rotator).toHaveCount(1);
   await expect(pills).toHaveCount(6);
   if (page.viewportSize().width <= 560) {
+    const core = section.locator(".orbit-core");
+    const coreLogo = core.locator("img");
     await expect(rotator).toHaveCSS("display", "grid");
     await expect(rotator).toHaveCSS("animation-name", "none");
     await expect(pills.first()).toHaveCSS("position", "relative");
+    await expect(pills.first()).toHaveCSS("text-align", "center");
+    await expect(coreLogo).toHaveCSS("height", "30px");
+    await expect
+      .poll(() =>
+        core.evaluate((element) => {
+          const coreBox = element.getBoundingClientRect();
+          const logoBox = element.querySelector("img").getBoundingClientRect();
+          return Math.abs(
+            logoBox.left + logoBox.width / 2 - (coreBox.left + coreBox.width / 2),
+          );
+        }),
+      )
+      .toBeLessThan(1);
     await expect
       .poll(() =>
         page.evaluate(
@@ -275,6 +308,9 @@ test("operações mostra os dois trilhos e cabe horizontalmente no viewport", as
 
   const section = page.locator("#operacoes");
   const cards = section.locator(".operations-showcase__card");
+  await expect(section.getByRole("heading", { level: 2 })).toHaveText(
+    "Conheça as operações em que podemos ajudar sua transportadora a captar novos embarcadores.",
+  );
   await expect(cards).toHaveCount(36);
   await expect(cards.nth(0).getByRole("heading", { level: 3 })).toHaveText(
     "Carga fechada",
@@ -509,6 +545,18 @@ test("resultados apresenta cases reais, perfis e prova social sem overflow", asy
   await expect(
     cases.nth(1).locator(".result-case__headline strong"),
   ).toHaveText("18");
+  await expect(cases.nth(1).locator(".result-case__brand img")).toHaveAttribute(
+    "src",
+    "/assets/img/clientes/solucao.png",
+  );
+  await expect
+    .poll(() =>
+      cases.nth(1).locator(".result-case__brand img").evaluate((image) => ({
+        width: image.naturalWidth,
+        height: image.naturalHeight,
+      })),
+    )
+    .toEqual({ width: 2172, height: 724 });
   await expect(
     section.getByRole("link", { name: /Ver TPL Logística no Instagram/ }),
   ).toHaveAttribute("href", "https://www.instagram.com/tpllogistica/");
@@ -654,6 +702,11 @@ test("resultados apresenta cases reais, perfis e prova social sem overflow", asy
   ).toHaveAttribute("href", filloutUrl);
 
   await page.setViewportSize({ width: 390, height: 844 });
+  await expect(logos.nth(4)).toHaveCSS("object-position", "50% 50%");
+  await expect(logos.nth(4)).toHaveCSS(
+    "transform",
+    "matrix(1.04, 0, 0, 1.04, 0, 0)",
+  );
   await expect
     .poll(() =>
       page.evaluate(
