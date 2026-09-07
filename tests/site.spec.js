@@ -189,6 +189,19 @@ test("perfil logístico mantém movimento suave em todos os navegadores", async 
   await expect(section).toBeVisible();
   await expect(rotator).toHaveCount(1);
   await expect(pills).toHaveCount(6);
+  if (page.viewportSize().width <= 560) {
+    await expect(rotator).toHaveCSS("display", "grid");
+    await expect(rotator).toHaveCSS("animation-name", "none");
+    await expect(pills.first()).toHaveCSS("position", "relative");
+    await expect
+      .poll(() =>
+        page.evaluate(
+          () => document.documentElement.scrollWidth <= window.innerWidth,
+        ),
+      )
+      .toBe(true);
+    return;
+  }
   await expect
     .poll(() =>
       section.evaluate((element) => {
@@ -223,21 +236,12 @@ test("perfil logístico mantém movimento suave em todos os navegadores", async 
       }),
     )
     .toBe(true);
-  if (page.viewportSize().width <= 560) {
-    await expect(rotator).toHaveCSS(
-      "animation-name",
-      "profileOrbitMobileDrift",
-    );
-    await expect(rotator).toHaveCSS("animation-duration", "5.5s");
-    await expect(pills.first()).toHaveCSS("animation-name", "none");
-  } else {
-    await expect(rotator).toHaveCSS("animation-name", "profileOrbitRotate");
-    await expect(rotator).toHaveCSS("animation-duration", "24s");
-    await expect(pills.first()).toHaveCSS(
-      "animation-name",
-      "profileOrbitCounterRotate",
-    );
-  }
+  await expect(rotator).toHaveCSS("animation-name", "profileOrbitRotate");
+  await expect(rotator).toHaveCSS("animation-duration", "24s");
+  await expect(pills.first()).toHaveCSS(
+    "animation-name",
+    "profileOrbitCounterRotate",
+  );
 
   const transformBefore = await rotator.evaluate(
     (element) => getComputedStyle(element).transform,
@@ -259,19 +263,8 @@ test("perfil logístico mantém movimento suave em todos os navegadores", async 
     .toBe(true);
 
   await page.emulateMedia({ reducedMotion: "reduce" });
-  if (page.viewportSize().width <= 560) {
-    await expect(rotator).toHaveCSS(
-      "animation-name",
-      "profileOrbitMobileDrift",
-    );
-    await expect(pills.first()).toHaveCSS("animation-name", "none");
-  } else {
-    await expect(rotator).toHaveCSS("animation-name", "profileOrbitRotate");
-    await expect(pills.first()).toHaveCSS(
-      "animation-name",
-      "profileOrbitCounterRotate",
-    );
-  }
+  await expect(rotator).toHaveCSS("animation-name", "none");
+  await expect(pills.first()).toHaveCSS("animation-name", "none");
 });
 
 test("operações mostra os dois trilhos e cabe horizontalmente no viewport", async ({
@@ -361,24 +354,134 @@ test("operações mostra os dois trilhos e cabe horizontalmente no viewport", as
     .toBe(true);
 });
 
-test("operações continua trocando com redução de movimento ativa", async ({
+test("operações vira uma galeria de toque legível no mobile", async ({
+  page,
+}, testInfo) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/#operacoes");
+
+  const section = page.locator("#operacoes");
+  const rows = section.locator("[data-ops-row]");
+  const cards = section.locator(".operations-showcase__card");
+  const firstViewport = section.locator(".operations-showcase__viewport").first();
+
+  await expect(rows).toHaveCount(2);
+  await expect(cards).toHaveCount(12);
+  await expect(rows.first()).toHaveAttribute("data-ops-mode", "scroll");
+  await expect(rows.last()).toHaveAttribute("data-ops-mode", "scroll");
+  await expect(section.locator("[data-ops-track]").first()).toHaveCSS(
+    "animation-name",
+    "none",
+  );
+  await expect
+    .poll(() =>
+      cards.first().evaluate((card) => {
+        const style = getComputedStyle(card, "::before");
+        return style.backgroundImage;
+      }),
+    )
+    .toContain("carga-fechada");
+  await expect
+    .poll(() =>
+      cards.first().evaluate((card) => card.getBoundingClientRect().height),
+    )
+    .toBeGreaterThanOrEqual(290);
+  await expect
+    .poll(() =>
+      firstViewport.evaluate(
+        (viewport) => viewport.scrollWidth > viewport.clientWidth,
+      ),
+    )
+    .toBe(true);
+  await expect
+    .poll(() =>
+      page.evaluate(
+        () => document.documentElement.scrollWidth <= window.innerWidth,
+      ),
+    )
+    .toBe(true);
+
+  if (testInfo.project.name === "mobile") {
+    await page.screenshot({
+      path: testInfo.outputPath("operations-mobile.png"),
+      fullPage: false,
+    });
+  }
+});
+
+test("home e páginas estratégicas não criam overflow no mobile", async ({
+  page,
+}) => {
+  const routes = [
+    "/",
+    "/captacao-de-embarcadores/",
+    "/marketing-para-transportadoras/",
+    "/perfil-logistico/",
+    "/sobre/",
+    "/politica-de-privacidade/",
+    "/termos/",
+  ];
+
+  for (const width of [320, 390]) {
+    await page.setViewportSize({ width, height: 800 });
+    for (const route of routes) {
+      await page.goto(route);
+      await expect
+        .poll(() =>
+          page.evaluate(
+            () => document.documentElement.scrollWidth <= window.innerWidth,
+          ),
+        )
+        .toBe(true);
+      await expect(page.locator("h1")).toBeVisible();
+    }
+  }
+});
+
+test("menu mobile abre sem bloquear a navegação e fecha após a escolha", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+
+  const toggle = page.locator(".menu-toggle");
+  const nav = page.locator(".mobile-menu");
+  await toggle.click();
+  await expect(toggle).toHaveAttribute("aria-expanded", "true");
+  await expect(nav).toBeVisible();
+  await nav.getByRole("link", { name: "Operações" }).click();
+  await expect(toggle).toHaveAttribute("aria-expanded", "false");
+  await expect(page.locator("#operacoes")).toBeInViewport();
+});
+
+test("CRM apresenta leads em cartões legíveis no mobile", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/#dados");
+
+  const screen = page.locator("#crm-screen-leads");
+  await expect(screen).toBeVisible();
+  await expect(screen.locator(".crm-demo__mobile-leads article")).toHaveCount(6);
+  await expect(screen.locator(".crm-demo__table-scroll")).toBeHidden();
+  await expect(screen).toHaveCSS("transform", "none");
+});
+
+test("operações respeita redução de movimento e mantém navegação manual", async ({
   page,
 }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/#operacoes");
 
   const track = page.locator('[data-ops-row="primary"] [data-ops-track]');
-  const before = await track.evaluate(
-    (element) => getComputedStyle(element).transform,
+  const viewport = page.locator(
+    '[data-ops-row="primary"] .operations-showcase__viewport',
   );
-
+  await expect(track).toHaveCSS("animation-name", "none");
+  await expect(track).toHaveCSS("transform", "none");
   await expect
-    .poll(
-      () => track.evaluate((element) => getComputedStyle(element).transform),
-      { timeout: 2000 },
+    .poll(() =>
+      viewport.evaluate((element) => element.scrollWidth > element.clientWidth),
     )
-    .not.toBe(before);
-  await expect(track).toHaveCSS("animation-duration", "48s");
+    .toBe(true);
 });
 
 test("resultados apresenta cases reais, perfis e prova social sem overflow", async ({
