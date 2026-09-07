@@ -70,24 +70,34 @@
 
   const card = ([title, description, image]) => {
     const webp = image.replace(/\.png$/i, ".webp");
-    const responsiveImage = `image-set(url('${webp}') type('image/webp'), url('${image}') type('image/png'))`;
-    return `<article class="operations-showcase__card" style="--ops-image:${responsiveImage}"><div class="operations-showcase__card-content"><h3>${title}</h3><p>${description}</p></div></article>`;
+    return `<article class="operations-showcase__card" style="--ops-image:url('${webp}');--ops-image-fallback:url('${image}')"><div class="operations-showcase__card-content"><h3>${title}</h3><p>${description}</p></div></article>`;
   };
 
   const visibleCards = () => (innerWidth < 620 ? 1 : innerWidth < 980 ? 2 : 3);
+  const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+  const usesTouchLayout = () => innerWidth <= 620 || reducedMotion.matches;
 
   const renderRow = (row, items) => {
     const visible = visibleCards();
     const direction = row.dataset.opsDirection === "ltr" ? "ltr" : "rtl";
     const markup = items.map((item) => card(item)).join("");
     const track = row.querySelector("[data-ops-track]");
+    const viewport = row.querySelector(".operations-showcase__viewport");
     track.style.animation = "none";
     track.style.animationDelay = "0ms";
     track.dataset.opsDelay = "0";
-    track.innerHTML = markup.repeat(3);
-    const viewport = row.querySelector(".operations-showcase__viewport");
+    track.innerHTML = usesTouchLayout() ? markup : markup.repeat(3);
     const gap = Number.parseFloat(getComputedStyle(track).columnGap) || 0;
     const cardWidth = (viewport.clientWidth - gap * (visible - 1)) / visible;
+    if (usesTouchLayout()) {
+      row.dataset.opsMode = "scroll";
+      track.style.removeProperty("--ops-loop-from");
+      track.style.removeProperty("--ops-loop-to");
+      track.style.setProperty("--ops-card-width", `${cardWidth}px`);
+      viewport.scrollLeft = 0;
+      return;
+    }
+    row.dataset.opsMode = "loop";
     const loopDistance = items.length * (cardWidth + gap);
     track.style.setProperty("--ops-card-width", `${cardWidth}px`);
     track.style.setProperty(
@@ -122,6 +132,7 @@
       },
       { passive: true },
     );
+    reducedMotion.addEventListener("change", render);
   };
 
   if (location.hash === "#operacoes") {

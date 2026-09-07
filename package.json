@@ -10,7 +10,7 @@
     "optimize:images": "node scripts/optimize-images.mjs",
     "build": "npm run lint && npm run typecheck && npm run seo:audit && node scripts/build.mjs",
     "format": "biome format --write assets/js",
-    "test:e2e": "playwright test",
+    "test:e2e": "npm run build && playwright test",
     "lighthouse": "lhci autorun"
   },
   "devDependencies": {

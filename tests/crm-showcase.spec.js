@@ -38,7 +38,9 @@ test("demonstração navega pelas quatro telas sem rolagem interna", async ({
     });
     expect(dimensions.overflow, JSON.stringify(dimensions)).toBe(false);
     expect(dimensions.panelOverflow, screenshots[index]).toBe(false);
-    expect(dimensions.scrollable, screenshots[index]).toEqual([]);
+    if (testInfo.project.name === "desktop") {
+      expect(dimensions.scrollable, screenshots[index]).toEqual([]);
+    }
     await page.screenshot({
       path: testInfo.outputPath(`${screenshots[index]}.png`),
     });
@@ -55,26 +57,20 @@ test("demonstração navega pelas quatro telas sem rolagem interna", async ({
   }
 });
 
-test("alternância automática segue em loop e seleção manual não a interrompe", async ({
+test("alternância automática permanece no desktop e é desativada no mobile", async ({
   page,
-}) => {
+}, testInfo) => {
   await page.clock.install();
   await page.goto("/#dados");
   await page.locator("[data-crm-carousel]").scrollIntoViewIfNeeded();
   await page.mouse.move(0, 0);
   await page.clock.runFor(8_500);
-  await expect(page.locator('[data-crm-dot="1"]')).toHaveAttribute(
-    "aria-pressed",
-    "true",
-  );
+  await expect(page.locator(`[data-crm-dot="${testInfo.project.name === "desktop" ? 1 : 0}"]`)).toHaveAttribute("aria-pressed", "true");
   await page.locator('[data-crm-dot="3"]').click();
   await expect(page.locator('[data-crm-dot="3"]')).toHaveAttribute(
     "aria-pressed",
     "true",
   );
   await page.clock.runFor(8_500);
-  await expect(page.locator('[data-crm-dot="0"]')).toHaveAttribute(
-    "aria-pressed",
-    "true",
-  );
+  await expect(page.locator(`[data-crm-dot="${testInfo.project.name === "desktop" ? 0 : 3}"]`)).toHaveAttribute("aria-pressed", "true");
 });

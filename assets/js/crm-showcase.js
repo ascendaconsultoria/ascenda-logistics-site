@@ -101,7 +101,8 @@
     const screen = (id, name, content, index) =>
       `<section id="crm-screen-${id}" class="crm-demo" role="group" aria-roledescription="slide" aria-label="${index + 1} de 4: ${name}" ${index ? "hidden" : ""}>${content}</section>`;
     const leadsScreen = `<div class="crm-demo__screen-heading"><div><h3>Seus embarcadores, em detalhe</h3><p>Conheça a demanda e o contato responsável.</p></div></div>
-    <div class="crm-demo__table-scroll" aria-label="Tabela de leads"><table class="crm-demo__table"><thead><tr><th>Empresa / segmento</th><th>Contato / cargo</th><th>Rota principal</th><th>Volume</th><th>Frequência</th><th>Operação</th></tr></thead><tbody>${leads.map((lead) => `<tr><td><strong>${lead.company}</strong><small>${lead.segment}</small></td><td>${lead.person}<small>${lead.role}</small></td><td>${lead.route}</td><td>${lead.volume}</td><td>${lead.frequency}</td><td><span class="crm-demo__operation">${lead.operation}</span></td></tr>`).join("")}</tbody></table></div>`;
+    <div class="crm-demo__table-scroll" aria-label="Tabela de leads"><table class="crm-demo__table"><thead><tr><th>Empresa / segmento</th><th>Contato / cargo</th><th>Rota principal</th><th>Volume</th><th>Frequência</th><th>Operação</th></tr></thead><tbody>${leads.map((lead) => `<tr><td><strong>${lead.company}</strong><small>${lead.segment}</small></td><td>${lead.person}<small>${lead.role}</small></td><td>${lead.route}</td><td>${lead.volume}</td><td>${lead.frequency}</td><td><span class="crm-demo__operation">${lead.operation}</span></td></tr>`).join("")}</tbody></table></div>
+    <div class="crm-demo__mobile-leads" aria-label="Leads qualificados">${leads.map((lead) => `<article><div><h4>${lead.company}</h4><p>${lead.person} · ${lead.role}</p></div><dl><div><dt>Rota</dt><dd>${lead.route}</dd></div><div><dt>Volume</dt><dd>${lead.volume}</dd></div><div><dt>Operação</dt><dd>${lead.operation}</dd></div></dl><span>${lead.score}% de aderência</span></article>`).join("")}</div>`;
     const stages = [
       "Novo lead",
       "Contato iniciado",
@@ -180,13 +181,20 @@
       dot.setAttribute("aria-controls", panels[index].id);
     });
     // A fixed composition scales like a static image, without nested scroll areas.
+    const mobileLayout = matchMedia("(max-width: 600px)");
     const resize = () => {
+      if (mobileLayout.matches) {
+        stage.style.setProperty("--crm-scale", "1");
+        stage.style.height = "500px";
+        return;
+      }
       const width = stage.clientWidth - 24;
       stage.style.setProperty("--crm-scale", String(width / 1188));
       stage.style.height = `${(368 * width) / 1188 + 24}px`;
     };
     resize();
     new ResizeObserver(resize).observe(stage);
+    mobileLayout.addEventListener("change", resize);
 
     const motion = matchMedia("(prefers-reduced-motion: reduce)");
     let index = 0;
@@ -195,7 +203,13 @@
     let timer;
     const syncPlayback = () => {
       clearInterval(timer);
-      if (!paused && inView && !document.hidden) {
+      if (
+        !paused &&
+        inView &&
+        !document.hidden &&
+        !motion.matches &&
+        !mobileLayout.matches
+      ) {
         timer = setInterval(() => show(index + 1), 5000);
       }
       pauseButton.textContent = paused ? "Reproduzir" : "Pausar";
@@ -235,6 +249,7 @@
     });
     document.addEventListener("visibilitychange", syncPlayback);
     motion.addEventListener("change", syncPlayback);
+    mobileLayout.addEventListener("change", syncPlayback);
     if ("IntersectionObserver" in window) {
       new IntersectionObserver(
         ([entry]) => {
